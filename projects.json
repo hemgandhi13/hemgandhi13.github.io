@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Polimap — Geo-analytics",
+    "desc": "ETL (Python/SQL), spatial joins in PostGIS, FastAPI backend for a Leaflet UI; performant heatmaps, RBAC, QA, docs.",
+    "tech": ["Python","PostgreSQL","PostGIS","FastAPI","Leaflet","Docker"], 
+    "demo": "Project done under NPA"
+  },
+  {
+    "title": "PowerCo — Churn baseline",
+    "desc": "XGBoost + threshold tuning; recall-first trade-offs (precision/recall made explicit).",
+    "tech": ["Python","scikit-learn","XGBoost"],
+    "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
+    "demo": null
+  },
+  {
+    "title": "Citi — FP&A pack",
+    "desc": "KPI/variance packs, scenario notes (Basel III signals), concise exec summaries & actions.",
+    "tech": ["Excel","SQL"],
+    "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
+    "demo": null
+  }
+]
