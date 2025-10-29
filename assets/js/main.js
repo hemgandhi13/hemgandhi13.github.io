@@ -1,157 +1,84 @@
-// ===== Theme (light/dark) =====
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme', t);
-  try { localStorage.setItem('theme', t); } catch {}
-}
-function initTheme(){
-  const saved = (()=>{ try { return localStorage.getItem('theme'); } catch { return null } })();
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  setTheme(saved || (prefersDark ? 'dark' : 'light'));
-  const btn = document.getElementById('theme-toggle');
-  if (btn){
-    const paint = ()=> btn.textContent = (document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙');
-    paint();
-    btn.addEventListener('click', ()=>{
-      const next = document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
-      setTheme(next); paint();
-      if (typeof plausible === 'function') plausible('Theme Toggled', { props: { to: next }});
-    });
+// ===== Load and Display Projects =====
+async function loadProjects() {
+  try {
+    const response = await fetch('projects.json');
+    const data = await response.json();
+    const projectList = document.getElementById('project-list');
+    
+    if (!projectList) return;
+    
+    // Filter and display only selected projects
+    const selectedProjects = data.projects.filter(p => p.selected === true);
+    
+    if (selectedProjects.length === 0) {
+      projectList.innerHTML = '<p style="text-align: center; color: var(--muted);">No projects to display yet.</p>';
+      return;
+    }
+    
+    // Generate project cards
+    projectList.innerHTML = selectedProjects.map(project => `
+      <div class="project-card">
+        <h3>${escapeHtml(project.title)}</h3>
+        <p class="project-description">${escapeHtml(project.description)}</p>
+        ${project.stack && project.stack.length > 0 ? `
+          <div class="project-stack">
+            ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
+          </div>
+        ` : ''}
+        ${project.github || project.live ? `
+          <div style="margin-top: 20px; display: flex; gap: 12px;">
+            ${project.github ? `<a href="${escapeHtml(project.github)}" target="_blank" rel="noopener" class="project-link">View Code →</a>` : ''}
+            ${project.live ? `<a href="${escapeHtml(project.live)}" target="_blank" rel="noopener" class="project-link">Live Demo →</a>` : ''}
+          </div>
+        ` : ''}
+      </div>
+    `).join('');
+    
+  } catch (error) {
+    console.error('Error loading projects:', error);
+    const projectList = document.getElementById('project-list');
+    if (projectList) {
+      projectList.innerHTML = '<p style="text-align: center; color: var(--muted);">Unable to load projects.</p>';
+    }
   }
+}
+
+// Helper function to escape HTML and prevent XSS
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 // ===== Analytics bindings (Plausible custom events) =====
-function initAnalytics(){
-  // Resume clicks
-  document.querySelectorAll('.resume-btn').forEach(a=>{
-    a.addEventListener('click', ()=>{ if (typeof plausible==='function') plausible('Resume Download'); });
-  });
+function initAnalytics() {
   // Email clicks
-  document.querySelectorAll('.email-btn, a[href^="mailto:"]').forEach(a=>{
-    a.addEventListener('click', ()=>{ if (typeof plausible==='function') plausible('Email Click'); });
-  });
-  // Project repo/live clicks (event delegation)
-  const grid = document.getElementById('projects-grid');
-  if (grid) grid.addEventListener('click', (e)=>{
-    const a = e.target.closest('a'); if (!a) return;
-    const txt = (a.textContent||'').toLowerCase();
-    if (typeof plausible!=='function') return;
-    if (txt.includes('repo')) plausible('Repo Click');
-    if (txt.includes('live')) plausible('Live Demo Click');
-  });
-  // Focus selection
-  document.querySelectorAll('.focus-chips .chip').forEach(a=>{
-    a.addEventListener('click', ()=>{
-      const url = new URL(a.href, location.href);
-      const focus = new URLSearchParams(url.search).get('focus') || 'general';
-      if (typeof plausible==='function') plausible('Focus Selected', { props: { focus }});
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+    a.addEventListener('click', () => {
+      if (typeof plausible === 'function') plausible('Email Click');
     });
   });
-}
-
-// Year stamp
-document.getElementById("y").textContent = new Date().getFullYear();
-
-// Updated stamp
-const upd = document.getElementById("updated-stamp");
-if (upd) upd.textContent = "Updated: " + new Date().toLocaleDateString();
-
-// ---- Focus logic ----
-function getFocus() {
-  const f = new URLSearchParams(location.search).get("focus");
-  const allowed = ["general","finance","fmcg","supplychain","energy"];
-  return allowed.includes(f) ? f : "general";
-}
-function setActiveChip(focus) {
-  document.querySelectorAll(".focus-chips .chip").forEach(a=>{
-    const url = new URL(a.href, location.href);
-    const f = new URLSearchParams(url.search).get("focus") || "general";
-    a.classList.toggle("active", f === focus);
-  });
-}
-
-// ---- Impact bullets by focus ----
-const IMPACT = {
-  general: [
-    "Automated data-quality checks (Python/SQL) → manual QA ↓ **~30%**, usable records ↑ **12–18%**.",
-    "Stakeholder dashboards & variance diagnostics → rework cycles reduced; faster decisions.",
-    "Recall-first churn baseline (XGBoost) with calibrated thresholds; trade-offs documented."
-  ],
-  finance: [
-    "Automated checks across submissions → reconcile issues faster; usable records ↑ **12–18%**.",
-    "Churn/propensity baseline → recall ↑ with documented precision trade-offs.",
-    "KPI/variance packs clarified drivers (mix/price/volume) → quicker month-end actions."
-  ],
-  fmcg: [
-    "POS/scan data QC & outlier controls → manual QA ↓ **~30%**; trustworthy sell-through metrics.",
-    "Promo uplift analysis & dashboards → faster learn→repeat cycles for category managers.",
-    "Automated packs + tidy handovers → rework cycles down; on-time reporting ↑."
-  ],
-  supplychain: [
-    "Lane/stop-level QA & exception alerts → OTD metric reliability ↑; manual triage ↓.",
-    "Geo bottleneck views (PostGIS/Leaflet) → faster root-cause on delays.",
-    "Ops dashboards surfaced variance early → decision latency ↓; SLA adherence ↑."
-  ],
-  energy: [
-    "AMI/interval data QA (nulls/outliers/schema drift) → trusted inputs; usable records ↑ **12–18%**.",
-    "Spatial joins (feeder/zones) for loss/leakage views → actionable anomaly detection.",
-    "Churn/retention signals for retail portfolios → recall ↑ with clear threshold trade-offs."
-  ]
-};
-
-function renderImpacts(focus){
-  const list = document.getElementById("impact-list");
-  const items = (IMPACT[focus] || IMPACT.general)
-    .map(s => `<li>${s.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")}</li>`)
-    .join("");
-  list.innerHTML = items;
-  const label = document.getElementById("focus-label");
-  label.textContent = focus === "general" ? "Viewing: General" : `Viewing: ${focus[0].toUpperCase()+focus.slice(1)} focus`;
-}
-
-// ---- Projects ----
-async function loadProjects(focus){
-  try {
-    const res = await fetch("projects.json", {cache: "no-store"});
-    const items = await res.json();
-
-    // order: domain-matching first
-    const sorted = items.slice().sort((a,b)=>{
-      const am = (a.domains||[]).includes(focus) ? 0 : 1;
-      const bm = (b.domains||[]).includes(focus) ? 0 : 1;
-      return am - bm;
+  
+  // Project clicks (event delegation)
+  const projectList = document.getElementById('project-list');
+  if (projectList) {
+    projectList.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      const txt = (a.textContent || '').toLowerCase();
+      if (typeof plausible === 'function') {
+        if (txt.includes('code') || txt.includes('repo') || txt.includes('github')) {
+          plausible('Project Repo Click', { props: { url: a.href } });
+        } else if (txt.includes('demo') || txt.includes('live')) {
+          plausible('Project Live Click', { props: { url: a.href } });
+        }
+      }
     });
-
-    const grid = document.getElementById("projects-grid");
-    grid.innerHTML = sorted.map((p, idx) => `
-      <div class="card ${idx===0 ? 'gold' : ''}">
-        <h3>${p.title}${idx===0 ? " <span class='small' style='color:#1D4ED8'>(Golden Project)</span>":""}</h3>
-        <p class="small"><b>Problem:</b> ${p.problem || "—"}</p>
-        <p class="small"><b>Approach:</b> ${p.approach || p.desc || "—"}</p>
-        <p class="small"><b>Outcome:</b> ${p.outcome || "—"}</p>
-        <p class="small">
-          ${(p.repo?`<a href="${p.repo}" target="_blank" rel="noopener">Repo</a>`:"")}
-          ${(p.demo?` • <a href="${p.demo}" target="_blank" rel="noopener">Live</a>`:"")}
-        </p>
-        <p class="small">${(p.tech||[]).join(" • ")}</p>
-        ${p.next?`<p class="small"><i>Next:</i> ${p.next}</p>`:""}
-      </div>
-    `).join("");
-
-    // Top project jump
-    const jump = document.getElementById("jump-top-project");
-    if (jump) jump.onclick = (e)=>{ e.preventDefault(); grid.scrollIntoView({behavior:"smooth"}); };
-
-  } catch(e){
-    console.warn("projects.json not found/invalid", e);
   }
 }
 
-// ---- Init ----
-(function init(){
-  initTheme();
+// ===== Initialize on page load =====
+document.addEventListener('DOMContentLoaded', () => {
+  loadProjects();
   initAnalytics();
-  const focus = getFocus();
-  setActiveChip(focus);
-  renderImpacts(focus);
-  loadProjects(focus);
-})();
+});
