@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Plausible analytics (optional) -->
   <script defer data-domain="hemgandhi13.github.io" src="https://plausible.io/js/script.js"></script>
   <script type="application/ld+json">
   {
@@ -33,42 +34,60 @@
 <body>
   <div class="wrap">
     <!-- HERO -->
-    <section id="hero">
+    <section id="hero" class="hero">
       <div class="hero-content">
         <h1>Hem Gandhi</h1>
-        <p class="tagline">Data & Analytics Professional</p>
-        <p class="bio">Specializing in SQL, Python, BI, Machine Learning, Deep Learning, and AI Foundations.</p>
-        <div class="cta-buttons">
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="mailto:hemgandhigithub13@email.com" class="btn-secondary">Get in Touch</a>
+        <p class="tagline">Data &amp; Analytics — SQL • Python • BI • ML foundations</p>
+
+        <!-- At-a-glance pills (answer the 5 basics fast) -->
+        <div class="glance">
+          <span class="pill accent">Analytics Eng • Data/BI Analyst • Jr DS/ML</span>
+          <span class="pill">Melbourne</span>
+          <span class="pill">TR-485 full-time to Mar 2028</span>
+          <span class="pill">Availability: 2–4 weeks</span>
         </div>
+
+        <!-- Single CTA cluster (no redundancy elsewhere) -->
+        <div class="cta-buttons">
+          <a href="Hem_Gandhi_Resume.docx" class="btn-primary resume-btn">Download Resume (.docx)</a>
+          <a href="#projects" class="btn-secondary">View Projects</a>
+          <a href="mailto:hemgandhigithub13@email.com" class="btn-secondary email-btn">Email</a>
+          <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn</a>
+          <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="btn-secondary">GitHub</a>
+        </div>
+
+        <div id="updated-stamp" class="updated small"></div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>I'm a data and analytics professional with expertise in transforming raw data into actionable insights. My work spans across SQL, Python, Business Intelligence, Machine Learning, Deep Learning, and AI Foundations.</p>
-      <p>I focus on building robust data pipelines, creating insightful visualizations, and developing predictive models that drive business value.</p>
+    <!-- PROOF (IMPACT) -->
+    <section id="impact">
+      <h2>Proof (impact)</h2>
+      <ul class="impact-list">
+        <li>Automated data-quality checks (Python/SQL) → manual QA ↓ <b>~30%</b>, usable records ↑ <b>12–18%</b>.</li>
+        <li>Stakeholder dashboards &amp; variance diagnostics → rework cycles reduced; faster decisions.</li>
+        <li>Recall-first churn baseline (XGBoost) with calibrated thresholds; trade-offs documented.</li>
+      </ul>
     </section>
 
     <!-- SELECTED PROJECTS -->
     <section id="projects">
       <h2>Selected Work</h2>
-      <div id="project-list" class="project-grid">
-        <!-- Projects will be loaded here -->
+      <div id="project-list" class="project-grid"><!-- JS fills --></div>
+      <div id="projects-empty" class="small muted" style="display:none">
+        (No projects could be loaded. Check <code>projects.json</code> is valid JSON.)
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills">
-      <h2>Technical Skills</h2>
+      <h2>Stack</h2>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3>Data Analysis & Engineering</h3>
+          <h3>Data Analysis &amp; Engineering</h3>
           <ul>
             <li>SQL (PostgreSQL, MySQL)</li>
-            <li>Python (Pandas, NumPy)</li>
+            <li>Python (pandas, NumPy)</li>
             <li>ETL Pipelines</li>
           </ul>
         </div>
@@ -81,9 +100,9 @@
           </ul>
         </div>
         <div class="skill-category">
-          <h3>Machine Learning & AI</h3>
+          <h3>Machine Learning &amp; AI</h3>
           <ul>
-            <li>Scikit-learn</li>
+            <li>scikit-learn</li>
             <li>TensorFlow/Keras</li>
             <li>Deep Learning</li>
           </ul>
@@ -93,30 +112,26 @@
 
     <!-- CONTACT -->
     <section id="contact">
-      <h2>Let's Connect</h2>
+      <h2>Contact</h2>
       <div class="contact-links">
-        <a href="mailto:hemgandhigithub13@email.com" class="contact-link">
-          <span class="icon">✉</span>
-          <span>Email</span>
+        <a href="mailto:hemgandhigithub13@email.com" class="contact-link email-btn">
+          <span class="icon">✉</span><span>Email</span>
         </a>
         <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="contact-link">
-          <span class="icon">💼</span>
-          <span>LinkedIn</span>
+          <span class="icon">💼</span><span>LinkedIn</span>
         </a>
         <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="contact-link">
-          <span class="icon">🔗</span>
-          <span>GitHub</span>
+          <span class="icon">🔗</span><span>GitHub</span>
         </a>
-        <a href="tel:+61484653827" class="contact-link">
-          <span class="icon">📞</span>
-          <span>Phone</span>
+        <a href="Hem_Gandhi_Resume.docx" class="contact-link resume-btn">
+          <span class="icon">⬇</span><span>Resume</span>
         </a>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <p>&copy; 2025 Hem Gandhi. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> Hem Gandhi. All rights reserved.</p>
     </footer>
   </div>
 
