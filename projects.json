@@ -1,32 +1,65 @@
 [
   {
-    "title":"Polimap — Geo-analytics",
-    "desc":"ETL (Python/SQL), PostGIS spatial joins, FastAPI backend for Leaflet UI; heatmaps ~10k pts in ~3s; RBAC + QA.",
-    "tech":["Python","PostgreSQL","PostGIS","FastAPI","Leaflet","Docker"],
-    "domains":["energy","supplychain","fmcg"], 
-    "roles":["analytics-engineer","data-analyst","junior-ml"],
-    "repo":"https://github.com/hemgandhi13/polimap",
-    "demo":null,
-    "outcome":"Faster spatial insights; QA automated; render latency ~3s."
+    "title": "Polimap — Geo-analytics",
+    "problem": "Local area teams needed fast spatial insights for reporting and anomaly checks.",
+    "approach": "ETL in Python/SQL, PostGIS spatial joins, FastAPI backend for Leaflet UI; QA pipeline + RBAC.",
+    "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics; fewer manual checks.",
+    "tech": ["Python","PostgreSQL","PostGIS","FastAPI","Leaflet","Docker"],
+    "domains": ["energy","supplychain","fmcg","general"],
+    "roles": ["analytics-engineer","data-analyst","junior-ml"],
+    "repo": null,
+    "demo": null,
+    "next": "Add dbt models and CI data tests."
   },
   {
-    "title":"PowerCo — Churn baseline",
-    "desc":"XGBoost with threshold tuning; recall-first trade-offs documented.",
-    "tech":["Python","scikit-learn","XGBoost"],
-    "domains":["finance","energy","fmcg"],
-    "roles":["data-scientist","junior-ml","data-analyst"],
-    "repo":"https://github.com/hemgandhi13/powerco-churn",
-    "demo":null,
-    "outcome":"Recall ≈0.97 @0.30 threshold (precision trade-off noted)."
+    "title": "PowerCo — Churn baseline",
+    "problem": "Reduce churn by identifying high-risk customers while keeping false positives manageable.",
+    "approach": "EDA, feature engineering; XGBoost with calibrated thresholds; recall-first framing.",
+    "outcome": "Recall ≈0.97 @0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
+    "tech": ["Python","scikit-learn","XGBoost"],
+    "domains": ["finance","energy","fmcg","general"],
+    "roles": ["data-scientist","junior-ml","data-analyst"],
+    "repo": "https://github.com/hemgandhi13",
+    "demo": null,
+    "next": "Add cost-sensitive training + uplift modeling."
+  },
+
+  {
+  "title": "Citi — FP&A pack",
+  "problem": "Month-end needed clear variance explanations and executive-ready scenarios linked to Basel III metrics.",
+  "approach": "Built KPI/variance packs in Excel + SQL; standardized price/mix/volume drivers; templated exec summaries; added scenario notes referencing RWA/CAR.",
+  "outcome": "Clear variance drivers; faster month-end decisions; reusable packs reduced rework cycles.",
+  "tech": ["Excel", "SQL"],
+  "domains": ["finance", "general"],
+  "roles": ["data-analyst", "analytics-engineer", "fp&a-analyst"],
+  "repo": "https://github.com/hemgandhi13/citi-fpa",
+  "demo": null,
+  "next": "Automate data pulls with dbt/ETL; add anomaly detection on key ratios; publish a lightweight web view."
+  },
+
+  // ===== PLACEHOLDERS for your upcoming AI projects =====
+  {
+    "title": "AI Risk Scoring API (placeholder)",
+    "problem": "Score transactions for risk in real-time with low latency for ops triage.",
+    "approach": "FastAPI service; feature store; baseline tree model; later: compact ML model with explainers.",
+    "outcome": "Target <120ms p95 latency; AUC target ≥0.80 (placeholder).",
+    "tech": ["Python","FastAPI","scikit-learn","pandas"],
+    "domains": ["finance","general"],
+    "roles": ["analytics-engineer","junior-ml"],
+    "repo": "https://github.com/hemgandhi13", 
+    "demo": null,
+    "next": "Swap to LightGBM; add SHAP explanations; rate limiting."
   },
   {
-    "title":"Citi — FP&A pack",
-    "desc":"KPI/variance packs; Basel III scenario notes; exec actions.",
-    "tech":["Excel","SQL"],
-    "domains":["finance"],
-    "roles":["data-analyst","analytics-engineer"],
-    "repo":"https://github.com/hemgandhi13/citi-fpa",
-    "demo":null,
-    "outcome":"Clear variance drivers; faster month-end decisions."
+    "title": "LLM Report Summariser (placeholder)",
+    "problem": "Execs need TL;DR of long analytics reports with key metrics and risks.",
+    "approach": "Prompted LLM wrapper; section extractors; deterministic templates; guardrails.",
+    "outcome": "Reduce reading time by ~70% (placeholder); consistent key-metric callouts.",
+    "tech": ["Python","FastAPI"],
+    "domains": ["general","fmcg","supplychain","energy","finance"],
+    "roles": ["data-analyst","analytics-engineer"],
+    "repo": "https://github.com/hemgandhi13",
+    "demo": null,
+    "next": "Add evaluation harness; red-team prompts; caching."
   }
 ]
