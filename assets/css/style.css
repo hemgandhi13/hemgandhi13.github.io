@@ -39,3 +39,15 @@ a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
 .card h3{margin:0 0 6px}
 .card.gold{border-color:var(--accent)}
 footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--border); color:#94A3B8; font-size:13px}
+
+/* ===== Light/Dark theme overrides ===== */
+html[data-theme='dark']{
+  --bg:#0B1220; --ink:#E2E8F0; --muted:#94A3B8; --border:#1E293B; --accent:#60A5FA; --card:#0F172A;
+}
+html[data-theme='dark'] .hero{
+  background:radial-gradient(1000px 220px at 30% -20%, #0B1B3A 0%, rgba(0,0,0,0) 60%);
+}
+html[data-theme='dark'] .btn{ background:#0F172A; border-color:var(--border); color:var(--ink) }
+html[data-theme='dark'] .btn.primary{ background:var(--accent); color:#0B1220 }
+html[data-theme='dark'] .sticky-bar{ background:#0B1220; box-shadow:0 4px 18px rgba(2,6,23,0.3) }
+
