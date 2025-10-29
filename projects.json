@@ -2,7 +2,9 @@
   "projects": [
     {
       "title": "Polimap — Geo-analytics",
-      "description": "Built a spatial analytics platform for local area teams. ETL pipeline in Python/SQL with PostGIS spatial joins and FastAPI backend. Heatmaps render ~10k points in ~3s with reliable spatial metrics.",
+      "problem": "Local area teams needed fast spatial insights for reporting and anomaly checks.",
+      "approach": "ETL in Python/SQL with PostGIS spatial joins and FastAPI backend; QA pipeline + RBAC.",
+      "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics; fewer manual checks.",
       "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "Leaflet", "Docker"],
       "github": null,
       "live": null,
@@ -10,7 +12,9 @@
     },
     {
       "title": "PowerCo — Churn Prediction",
-      "description": "Reduced customer churn by identifying high-risk customers. Used XGBoost with calibrated thresholds achieving recall ≈0.97 @0.30 threshold with clear stakeholder guidance.",
+      "problem": "Reduce churn by identifying high-risk customers while keeping false positives manageable.",
+      "approach": "EDA + feature engineering; XGBoost with calibrated thresholds; recall-first framing.",
+      "outcome": "Recall ≈0.97 @0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
       "stack": ["Python", "scikit-learn", "XGBoost"],
       "github": "https://github.com/hemgandhi13",
       "live": null,
@@ -18,7 +22,9 @@
     },
     {
       "title": "Citi — FP&A Pack",
-      "description": "Built KPI/variance packs for month-end reporting linked to Basel III metrics. Standardized price/mix/volume drivers with templated exec summaries, reducing rework cycles.",
+      "problem": "Month-end required clear variance explanations and scenario notes tied to Basel III metrics.",
+      "approach": "Built KPI/variance packs in Excel + SQL; standardized price/mix/volume drivers; templated exec summaries; added scenario notes referencing RWA/CAR.",
+      "outcome": "Clear variance drivers; faster month-end decisions; reusable packs reduced rework cycles.",
       "stack": ["Excel", "SQL"],
       "github": "https://github.com/hemgandhi13/citi-fpa",
       "live": null,
@@ -26,15 +32,19 @@
     },
     {
       "title": "Cognizant — Gala ML",
-      "description": "Built ML pipeline to predict stock availability at Gala warehouses. Used regression models with feature engineering to optimize inventory management and reduce stockouts.",
-      "stack": ["Python", "scikit-learn", "Pandas"],
+      "problem": "Warehouses needed to predict stock availability and reduce stockouts.",
+      "approach": "Supervised regression with feature engineering on inventory & demand signals; evaluation and error analysis.",
+      "outcome": "Improved allocation decisions and lowered stockout risk (internal KPI uplift).",
+      "stack": ["Python", "scikit-learn", "pandas"],
       "github": "https://github.com/hemgandhi13/cognizant-gala",
       "live": null,
       "selected": true
     },
     {
       "title": "KPMG — Sales-CLV",
-      "description": "Customer segmentation and lifetime value analysis for retail. Built RFM models and predictive CLV models to guide marketing strategy and customer targeting.",
+      "problem": "Marketing needed segments and lifetime value signals to target offers efficiently.",
+      "approach": "RFM segmentation + predictive CLV modeling; dashboarded insights for campaigns.",
+      "outcome": "Clear segment actions and CLV forecasts to guide spend and targeting.",
       "stack": ["Python", "Tableau", "SQL"],
       "github": "https://github.com/hemgandhi13/kpmg-sales-clv",
       "live": null,
@@ -42,7 +52,9 @@
     },
     {
       "title": "Tata — BI Sprint",
-      "description": "Built executive dashboards and KPI metrics for retail operations. Created interactive Tableau dashboards with SQL data pipelines for real-time business insights.",
+      "problem": "Execs needed real-time visibility into operational KPIs.",
+      "approach": "Interactive Tableau dashboards with SQL data pipelines; defined metric calculations and refresh cadence.",
+      "outcome": "Faster operational decisions; reduced manual report prep.",
       "stack": ["Tableau", "SQL", "Python"],
       "github": null,
       "live": null,
