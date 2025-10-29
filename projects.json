@@ -1,22 +1,32 @@
 [
   {
-    "title": "Polimap — Geo-analytics",
-    "desc": "ETL (Python/SQL), spatial joins in PostGIS, FastAPI backend for a Leaflet UI; performant heatmaps, RBAC, QA, docs.",
-    "tech": ["Python","PostgreSQL","PostGIS","FastAPI","Leaflet","Docker"], 
-    "demo": "Project done under NPA"
+    "title":"Polimap — Geo-analytics",
+    "desc":"ETL (Python/SQL), PostGIS spatial joins, FastAPI backend for Leaflet UI; heatmaps ~10k pts in ~3s; RBAC + QA.",
+    "tech":["Python","PostgreSQL","PostGIS","FastAPI","Leaflet","Docker"],
+    "domains":["energy","supplychain","fmcg"], 
+    "roles":["analytics-engineer","data-analyst","junior-ml"],
+    "repo":"https://github.com/hemgandhi13/polimap",
+    "demo":null,
+    "outcome":"Faster spatial insights; QA automated; render latency ~3s."
   },
   {
-    "title": "PowerCo — Churn baseline",
-    "desc": "XGBoost + threshold tuning; recall-first trade-offs (precision/recall made explicit).",
-    "tech": ["Python","scikit-learn","XGBoost"],
-    "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
-    "demo": null
+    "title":"PowerCo — Churn baseline",
+    "desc":"XGBoost with threshold tuning; recall-first trade-offs documented.",
+    "tech":["Python","scikit-learn","XGBoost"],
+    "domains":["finance","energy","fmcg"],
+    "roles":["data-scientist","junior-ml","data-analyst"],
+    "repo":"https://github.com/hemgandhi13/powerco-churn",
+    "demo":null,
+    "outcome":"Recall ≈0.97 @0.30 threshold (precision trade-off noted)."
   },
   {
-    "title": "Citi — FP&A pack",
-    "desc": "KPI/variance packs, scenario notes (Basel III signals), concise exec summaries & actions.",
-    "tech": ["Excel","SQL"],
-    "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
-    "demo": null
+    "title":"Citi — FP&A pack",
+    "desc":"KPI/variance packs; Basel III scenario notes; exec actions.",
+    "tech":["Excel","SQL"],
+    "domains":["finance"],
+    "roles":["data-analyst","analytics-engineer"],
+    "repo":"https://github.com/hemgandhi13/citi-fpa",
+    "demo":null,
+    "outcome":"Clear variance drivers; faster month-end decisions."
   }
 ]
