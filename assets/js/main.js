@@ -1,51 +1,78 @@
+// Year + updated stamp
+document.addEventListener('DOMContentLoaded', () => {
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+  const u = document.getElementById('updated-stamp');
+  if (u) u.textContent = 'Updated: ' + new Date().toLocaleDateString();
+
+  loadProjects();
+  initAnalytics();
+});
+
 // ===== Load and Display Projects =====
 async function loadProjects() {
+  const projectList = document.getElementById('project-list');
+  const empty = document.getElementById('projects-empty');
+  if (!projectList) return;
+
   try {
-    const response = await fetch('projects.json');
+    const response = await fetch('projects.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to fetch projects');
-    
     const data = await response.json();
-    const projectList = document.getElementById('project-list');
-    
-    if (!projectList) return;
-    
-    // Filter and display only selected projects
+
+    if (!data || !Array.isArray(data.projects)) throw new Error('Invalid JSON shape');
+
+    // Only show selected=true
     const selectedProjects = data.projects.filter(p => p.selected === true);
-    
-    if (selectedProjects.length === 0) {
-      projectList.innerHTML = '<p style="text-align: center; color: var(--muted);">No projects to display yet.</p>';
+
+    if (!selectedProjects.length) {
+      empty.style.display = 'block';
+      projectList.innerHTML = '';
       return;
     }
-    
-    // Generate project cards
-    projectList.innerHTML = selectedProjects.map(project => `
-      <div class="project-card">
-        <h3>${escapeHtml(project.title)}</h3>
-        <p class="project-description">${escapeHtml(project.description)}</p>
-        ${project.stack && project.stack.length > 0 ? `
-          <div class="project-stack">
-            ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
-          </div>
-        ` : ''}
-        ${project.github || project.live ? `
-          <div style="margin-top: 20px; display: flex; gap: 12px;">
-            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="project-link">View Code \u2192</a>` : ''}
-            ${project.live ? `<a href="${project.live}" target="_blank" rel="noopener" class="project-link">Live Demo \u2192</a>` : ''}
-          </div>
-        ` : ''}
-      </div>
-    `).join('');
-    
-  } catch (error) {
-    console.error('Error loading projects:', error);
-    const projectList = document.getElementById('project-list');
-    if (projectList) {
-      projectList.innerHTML = '<p style="text-align: center; color: var(--muted);">Unable to load projects.</p>';
-    }
+
+    // First selected project becomes Golden Project
+    projectList.innerHTML = selectedProjects.map((project, idx) => {
+      const isGold = idx === 0;
+      const hasPAO = project.problem || project.approach || project.outcome;
+
+      const kv = hasPAO ? `
+        <div class="kv small">
+          ${project.problem ? `<p><b>Problem:</b> ${escapeHtml(project.problem)}</p>` : ''}
+          ${project.approach ? `<p><b>Approach:</b> ${escapeHtml(project.approach)}</p>` : ''}
+          ${project.outcome ? `<p><b>Outcome:</b> ${escapeHtml(project.outcome)}</p>` : ''}
+        </div>
+      ` : `<p class="project-description">${escapeHtml(project.description)}</p>`;
+
+      return `
+        <div class="project-card ${isGold ? 'gold' : ''}">
+          ${isGold ? `<span class="golden-badge">Golden Project</span>` : ''}
+          <h3>${escapeHtml(project.title)}</h3>
+          ${kv}
+          ${Array.isArray(project.stack) && project.stack.length ? `
+            <div class="project-stack">
+              ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
+            </div>
+          ` : ''}
+
+          ${(project.github || project.live) ? `
+            <div class="project-links">
+              ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="project-link">Repo →</a>` : ''}
+              ${project.live ? `<a href="${project.live}" target="_blank" rel="noopener" class="project-link">Live →</a>` : ''}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+
+  } catch (err) {
+    console.error('Error loading projects:', err);
+    if (empty) empty.style.display = 'block';
+    if (projectList) projectList.innerHTML = '';
   }
 }
 
-// Helper function to escape HTML and prevent XSS
+// Escape HTML to prevent XSS
 function escapeHtml(text) {
   if (!text) return '';
   const div = document.createElement('div');
@@ -53,35 +80,31 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// ===== Analytics bindings (Plausible custom events) =====
+// ===== Analytics (Plausible custom events) =====
 function initAnalytics() {
   // Email clicks
-  document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+  document.querySelectorAll('.email-btn, a[href^="mailto:"]').forEach(a => {
     a.addEventListener('click', () => {
       if (typeof plausible === 'function') plausible('Email Click');
     });
   });
-  
-  // Project clicks (event delegation)
-  const projectList = document.getElementById('project-list');
-  if (projectList) {
-    projectList.addEventListener('click', (e) => {
-      const a = e.target.closest('a');
-      if (!a) return;
+
+  // Resume clicks
+  document.querySelectorAll('.resume-btn').forEach(a => {
+    a.addEventListener('click', () => {
+      if (typeof plausible === 'function') plausible('Resume Download');
+    });
+  });
+
+  // Project links (delegation)
+  const list = document.getElementById('project-list');
+  if (list) {
+    list.addEventListener('click', (e) => {
+      const a = e.target.closest('a'); if (!a) return;
       const txt = (a.textContent || '').toLowerCase();
-      if (typeof plausible === 'function') {
-        if (txt.includes('code') || txt.includes('repo') || txt.includes('github')) {
-          plausible('Project Repo Click', { props: { url: a.href } });
-        } else if (txt.includes('demo') || txt.includes('live')) {
-          plausible('Project Live Click', { props: { url: a.href } });
-        }
-      }
+      if (typeof plausible !== 'function') return;
+      if (txt.includes('repo')) plausible('Project Repo Click', { props: { url: a.href } });
+      if (txt.includes('live')) plausible('Project Live Click', { props: { url: a.href } });
     });
   }
 }
-
-// ===== Initialize on page load =====
-document.addEventListener('DOMContentLoaded', () => {
-  loadProjects();
-  initAnalytics();
-});
