@@ -1,3 +1,53 @@
+// ===== Theme (light/dark) =====
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  try { localStorage.setItem('theme', t); } catch {}
+}
+function initTheme(){
+  const saved = (()=>{ try { return localStorage.getItem('theme'); } catch { return null } })();
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(saved || (prefersDark ? 'dark' : 'light'));
+  const btn = document.getElementById('theme-toggle');
+  if (btn){
+    const paint = ()=> btn.textContent = (document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙');
+    paint();
+    btn.addEventListener('click', ()=>{
+      const next = document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+      setTheme(next); paint();
+      if (typeof plausible === 'function') plausible('Theme Toggled', { props: { to: next }});
+    });
+  }
+}
+
+// ===== Analytics bindings (Plausible custom events) =====
+function initAnalytics(){
+  // Resume clicks
+  document.querySelectorAll('.resume-btn').forEach(a=>{
+    a.addEventListener('click', ()=>{ if (typeof plausible==='function') plausible('Resume Download'); });
+  });
+  // Email clicks
+  document.querySelectorAll('.email-btn, a[href^="mailto:"]').forEach(a=>{
+    a.addEventListener('click', ()=>{ if (typeof plausible==='function') plausible('Email Click'); });
+  });
+  // Project repo/live clicks (event delegation)
+  const grid = document.getElementById('projects-grid');
+  if (grid) grid.addEventListener('click', (e)=>{
+    const a = e.target.closest('a'); if (!a) return;
+    const txt = (a.textContent||'').toLowerCase();
+    if (typeof plausible!=='function') return;
+    if (txt.includes('repo')) plausible('Repo Click');
+    if (txt.includes('live')) plausible('Live Demo Click');
+  });
+  // Focus selection
+  document.querySelectorAll('.focus-chips .chip').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      const url = new URL(a.href, location.href);
+      const focus = new URLSearchParams(url.search).get('focus') || 'general';
+      if (typeof plausible==='function') plausible('Focus Selected', { props: { focus }});
+    });
+  });
+}
+
 // Year stamp
 document.getElementById("y").textContent = new Date().getFullYear();
 
@@ -98,6 +148,8 @@ async function loadProjects(focus){
 
 // ---- Init ----
 (function init(){
+  initTheme();
+  initAnalytics();
   const focus = getFocus();
   setActiveChip(focus);
   renderImpacts(focus);
