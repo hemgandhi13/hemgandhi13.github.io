@@ -2,6 +2,8 @@
 async function loadProjects() {
   try {
     const response = await fetch('projects.json');
+    if (!response.ok) throw new Error('Failed to fetch projects');
+    
     const data = await response.json();
     const projectList = document.getElementById('project-list');
     
@@ -27,8 +29,8 @@ async function loadProjects() {
         ` : ''}
         ${project.github || project.live ? `
           <div style="margin-top: 20px; display: flex; gap: 12px;">
-            ${project.github ? `<a href="${escapeHtml(project.github)}" target="_blank" rel="noopener" class="project-link">View Code →</a>` : ''}
-            ${project.live ? `<a href="${escapeHtml(project.live)}" target="_blank" rel="noopener" class="project-link">Live Demo →</a>` : ''}
+            ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener" class="project-link">View Code \u2192</a>` : ''}
+            ${project.live ? `<a href="${project.live}" target="_blank" rel="noopener" class="project-link">Live Demo \u2192</a>` : ''}
           </div>
         ` : ''}
       </div>
@@ -45,6 +47,7 @@ async function loadProjects() {
 
 // Helper function to escape HTML and prevent XSS
 function escapeHtml(text) {
+  if (!text) return '';
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
