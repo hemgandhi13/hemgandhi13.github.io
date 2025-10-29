@@ -2,6 +2,9 @@
   --bg:#ffffff; --ink:#0F172A; --muted:#64748B; --border:#E2E8F0; --accent:#1D4ED8;
 }
 *{box-sizing:border-box} html,body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.6}
+.focus-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 6px}
+.chip{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:13px;color:var(--muted)}
+.chip.active{border-color:var(--accent); color:var(--accent); font-weight:600}
 .wrap{max-width:980px; margin:0 auto; padding:28px 18px 64px}
 h1{font-size:32px;margin:0 0 6px} h2{font-size:20px;margin:26px 0 10px}
 .hero{border:1px solid var(--border); border-radius:16px; padding:18px; background:radial-gradient(1000px 200px at 30% -20%,#EEF2FF 0%,rgba(255,255,255,0) 60%)}
