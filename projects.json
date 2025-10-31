@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "title": "Polimap — Geo-analytics",
+      "title": "Polimap — Geo-analytics (NDA)",
       "problem": "Local area teams needed fast spatial insights for reporting and anomaly checks.",
       "approach": "ETL in Python/SQL with PostGIS spatial joins and FastAPI backend; QA pipeline + RBAC.",
       "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics; fewer manual checks.",
