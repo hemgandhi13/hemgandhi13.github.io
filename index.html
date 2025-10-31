@@ -14,12 +14,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css" />
   <!-- Plausible analytics (optional) -->
-  <script defer data-domain="hemgandhi13.github.io" src="https://plausible.io/js/script.js"></script>
+  <!-- <script defer data-domain="hemgandhi13.github.io" src="https://plausible.io/js/script.js"></script> -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"Person",
-    "@name":"Hem Gandhi",
+    "name":"Hem Gandhi",
     "jobTitle":"Data & Analytics Professional",
     "url":"https://hemgandhi13.github.io",
     "email":"mailto:hemgandhigithub13@email.com",
@@ -34,157 +34,100 @@
     /* NO sticky styling for hero section */
     .hero {
       background: var(--bg-primary, #fff);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    button, .btn {
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-content">
-        <h1>Hem Gandhi</h1>
-        <p class="tagline">Data & Analytics Professional | SQL • Python • BI • ML • DL • AI Foundations</p>
-        <div class="hero-buttons">
-          <a href="#stack" class="btn-primary" style="cursor: pointer">View Stack</a>
-          <a href="#projects" class="btn-secondary" style="cursor: pointer">View Projects</a>
-          <a href="#contact" class="btn-secondary" style="cursor: pointer">Contact Me</a>
-        </div>
-      </div>
-    </section>
+  <!-- Hero section -->
+  <section class="hero">
+    <h1>Hem Gandhi</h1>
+    <p class="tagline">Data & Analytics — SQL • Python • BI • ML • DL • AI Foundations</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </section>
 
-    <!-- STACK -->
-    <section id="stack" class="stack">
-      <h2>Technical Stack</h2>
-      <div class="stack-grid">
-        <div class="skill-category">
-          <h3>Core Programming</h3>
-          <ul>
-            <li>Python (Pandas, NumPy)</li>
-            <li>SQL (MySQL, PostgreSQL)</li>
-            <li>PySpark/Databricks</li>
-            <li>ETL/Data Pipelines</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Business Intelligence</h3>
-          <ul>
-            <li>Tableau</li>
-            <li>Power BI</li>
-            <li>matplotlib/Plotly/Seaborn</li>
-            <li>Excel/VBA</li>
-            <li>Financial Analysis (FP&A)</li>
-            <li>Variance Analysis</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Machine Learning & AI</h3>
-          <ul>
-            <li>scikit-learn</li>
-            <li>Model Evaluation</li>
-            <li>Feature Engineering</li>
-            <li>Cross-validation</li>
-            <li>Threshold Tuning</li>
-            <li>SHAP/Explainability</li>
-            <li>AI Foundations (LLMs/RAG/Vector Search/MLOps)</li>
-            <li>Deep Learning</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h3>Version Control & Collaboration</h3>
-          <ul>
-            <li>Git</li>
-            <li>GitHub</li>
-            <li>Documentation</li>
-            <li>Code Review</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Data & Analytics professional skilled in SQL, Python, BI tools, and foundational Machine Learning/Deep Learning.</p>
+  </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="projects">
-      <h2>Projects</h2>
-      <div class="project-grid">
-        <article class="project-card">
-          <h3>PoliMap</h3>
-          <p class="project-note">Completed under NDA</p>
-          <p>GIS mapping + ML-driven electorate analysis platform</p>
-          <ul>
-            <li>Tableau + Power BI dashboards</li>
-            <li>ML for electorate scoring</li>
-            <li>PySpark pipelines</li>
-          </ul>
-        </article>
-        <article class="project-card">
-          <h3>Customer Churn Prediction</h3>
-          <p>End-to-end ML classification pipeline</p>
-          <ul>
-            <li>Exploratory Data Analysis (EDA)</li>
-            <li>Threshold tuning</li>
-            <li>SHAP explainability</li>
-            <li>Business-ready insights</li>
-          </ul>
-          <a href="https://github.com/hemgandhi13/customer-churn-prediction" target="_blank">View on GitHub</a>
-        </article>
-        <article class="project-card">
-          <h3>Sales Forecasting Dashboard</h3>
-          <p>Real-time Power BI + Tableau sales dashboard</p>
-          <ul>
-            <li>Time-series forecasting</li>
-            <li>YoY/MoM trends</li>
-            <li>Dynamic slicers</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills & Technologies</h2>
+    
+    <h3>SQL & Databases</h3>
+    <ul>
+      <li>SQL (complex queries, joins, subqueries, window functions)</li>
+      <li>PostgreSQL, MySQL, SQLite</li>
+      <li>Database design & optimization</li>
+    </ul>
 
-    <!-- WORK EXPERIENCE -->
-    <section id="experience" class="experience">
-      <h2>Recent Experience</h2>
-      <article>
-        <h3>Data & Insights Analyst | Future Labor Party (FLP)</h3>
-        <p class="date">Nov 2024 – Present</p>
-        <ul>
-          <li>Built PoliMap platform (Tableau, Power BI, PySpark, ML)</li>
-          <li>Delivered campaign-driven BI dashboards</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Data Analyst Intern | Seven Network</h3>
-        <p class="date">Aug 2023 – Nov 2023</p>
-        <ul>
-          <li>Supported analytics for national TV campaigns</li>
-          <li>Variance analysis, Power BI reporting</li>
-        </ul>
-      </article>
-    </section>
+    <h3>Python & Data Analysis</h3>
+    <ul>
+      <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
+      <li>Data cleaning, transformation, exploratory analysis</li>
+      <li>Jupyter Notebooks</li>
+    </ul>
 
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <h2>Get In Touch</h2>
-      <p>I'm currently open to new opportunities in Data & Analytics roles.</p>
-      <div class="contact-info">
-        <p>Email: <a href="mailto:hemgandhigithub13@email.com">hemgandhigithub13@email.com</a></p>
-        <p>Phone: <a href="tel:+61484653827">+61 484 653 827</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank">linkedin.com/in/hem-gandhi-92757b195</a></p>
-        <p>GitHub: <a href="https://github.com/hemgandhi13" target="_blank">github.com/hemgandhi13</a></p>
-      </div>
-    </section>
+    <h3>Business Intelligence & Visualization</h3>
+    <ul>
+      <li>Tableau, Power BI, Looker</li>
+      <li>Dashboard design & storytelling</li>
+      <li>Data-driven insights for stakeholders</li>
+    </ul>
 
-    <!-- LOGISTICS -->
-    <section id="logistics" class="logistics">
-      <h2>Work Logistics</h2>
-      <ul>
-        <li>Location: Sydney, Australia</li>
-        <li>Visa: Unrestricted work rights</li>
-        <li>Availability: Immediate</li>
-        <li>Work mode: On-site, Hybrid, or Remote</li>
-      </ul>
-    </section>
+    <h3>Machine Learning & AI</h3>
+    <ul>
+      <li>Scikit-learn, TensorFlow, Keras basics</li>
+      <li>Supervised & unsupervised learning (regression, classification, clustering)</li>
+      <li>Deep Learning fundamentals (neural networks, CNNs, RNNs)</li>
+      <li>Model evaluation & feature engineering</li>
+    </ul>
 
-    <footer>
-      <p>&copy; 2025 Hem Gandhi. All rights reserved.</p>
-    </footer>
-  </div>
+    <h3>Version Control & Collaboration</h3>
+    <ul>
+      <li>Git</li>
+      <li>GitHub</li>
+      <li>Documentation</li>
+      <li>Code Review</li>
+    </ul>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <p><em>(Sample projects or link to GitHub repos)</em></p>
+    <ul>
+      <li><strong>Sales Dashboard:</strong> Built interactive Tableau dashboard for quarterly sales trends.</li>
+      <li><strong>Customer Segmentation:</strong> K-means clustering on transactional data (Python, Scikit-learn).</li>
+      <li><strong>Predictive Model:</strong> Logistic regression for churn prediction (accuracy ~85%).</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      <strong>Email:</strong> <a href="mailto:hemgandhigithub13@email.com">hemgandhigithub13@email.com</a><br>
+      <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank">linkedin.com/in/hem-gandhi-92757b195</a><br>
+      <strong>GitHub:</strong> <a href="https://github.com/hemgandhi13" target="_blank">github.com/hemgandhi13</a><br>
+      <strong>Phone:</strong> +61 484 653 827
+    </p>
+    <p><em>Open to full-time, contract, or freelance opportunities. Visa sponsorship may be required.</em></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Hem Gandhi. All rights reserved.</p>
+  </footer>
 </body>
 </html>
