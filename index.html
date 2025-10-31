@@ -31,13 +31,9 @@
   }
   </script>
   <style>
-    /* Sticky fit strip */
+    /* NO sticky styling for hero section */
     .hero {
-      position: sticky;
-      top: 0;
-      z-index: 100;
       background: var(--bg-primary, #fff);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -47,56 +43,26 @@
     <section id="hero" class="hero">
       <div class="hero-content">
         <h1>Hem Gandhi</h1>
-        <p class="tagline">Data & Analytics — SQL • Python • BI • ML • DL • AI Foundations</p>
-        <!-- At-a-glance pills (answer the 5 basics fast) -->
-        <div class="glance">
-          <span class="pill accent">Analytics Eng • Data/BI Analyst • Jr DS/ML</span>
-          <span class="pill">Melbourne</span>
-          <span class="pill">TR-485 full-time to Mar 2028</span>
-          <span class="pill">Availability: 2–4 weeks</span>
+        <p class="tagline">Data & Analytics Professional | SQL • Python • BI • ML • DL • AI Foundations</p>
+        <div class="hero-buttons">
+          <a href="#stack" class="btn-primary" style="cursor: pointer">View Stack</a>
+          <a href="#projects" class="btn-secondary" style="cursor: pointer">View Projects</a>
+          <a href="#contact" class="btn-secondary" style="cursor: pointer">Contact Me</a>
         </div>
-        <!-- Single CTA cluster (no redundancy elsewhere) -->
-        <div class="cta-buttons">
-          <a href="Hem_Gandhi_Resume.docx" class="btn-primary resume-btn">Download Resume (.docx)</a>
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="mailto:hemgandhigithub13@email.com" class="btn-primary email-btn">Email</a>
-          <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="btn-primary">LinkedIn</a>
-          <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="btn-primary">GitHub</a>
-        </div>
-        <div id="updated-stamp" class="updated small"></div>
       </div>
     </section>
-    <!-- PROOF (IMPACT) -->
-    <section id="impact">
-      <h2>Proof (impact)</h2>
-      <ul class="impact-list">
-        <li>Automated data-quality checks (Python/SQL) → manual QA ↓ ~30%, usable records ↑ 12–18%.</li>
-        <li>Stakeholder dashboards & variance diagnostics → rework cycles reduced; faster decisions.</li>
-        <li>Recall-first churn baseline (XGBoost) with calibrated thresholds; trade-offs documented.</li>
-      </ul>
-    </section>
-    <!-- SELECTED PROJECTS -->
-    <section id="projects">
-      <h2>Selected Work</h2>
-      <div id="project-list" class="project-grid"><!-- JS fills --></div>
-      <div id="projects-empty" class="small muted" style="display:none">
-        (No projects could be loaded. Check projects.json is valid JSON.)
-      </div>
-    </section>
-    <!-- SKILLS -->
-    <section id="skills">
-      <h2>Stack</h2>
-      <div class="skills-grid">
+
+    <!-- STACK -->
+    <section id="stack" class="stack">
+      <h2>Technical Stack</h2>
+      <div class="stack-grid">
         <div class="skill-category">
-          <h3>Data Analysis & Engineering</h3>
+          <h3>Core Programming</h3>
           <ul>
-            <li>SQL (PostgreSQL, MySQL)</li>
-            <li>Python (pandas, NumPy, scikit-learn)</li>
-            <li>ETL Pipelines</li>
-            <li>Data Wrangling</li>
-            <li>PostGIS</li>
-            <li>Data Modeling</li>
-            <li>imbalanced-learn</li>
+            <li>Python (Pandas, NumPy)</li>
+            <li>SQL (MySQL, PostgreSQL)</li>
+            <li>PySpark/Databricks</li>
+            <li>ETL/Data Pipelines</li>
           </ul>
         </div>
         <div class="skill-category">
@@ -123,31 +89,102 @@
             <li>Deep Learning</li>
           </ul>
         </div>
+        <div class="skill-category">
+          <h3>Version Control & Collaboration</h3>
+          <ul>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>Documentation</li>
+            <li>Code Review</li>
+          </ul>
+        </div>
       </div>
     </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3>PoliMap</h3>
+          <p class="project-note">Completed under NDA</p>
+          <p>GIS mapping + ML-driven electorate analysis platform</p>
+          <ul>
+            <li>Tableau + Power BI dashboards</li>
+            <li>ML for electorate scoring</li>
+            <li>PySpark pipelines</li>
+          </ul>
+        </article>
+        <article class="project-card">
+          <h3>Customer Churn Prediction</h3>
+          <p>End-to-end ML classification pipeline</p>
+          <ul>
+            <li>Exploratory Data Analysis (EDA)</li>
+            <li>Threshold tuning</li>
+            <li>SHAP explainability</li>
+            <li>Business-ready insights</li>
+          </ul>
+          <a href="https://github.com/hemgandhi13/customer-churn-prediction" target="_blank">View on GitHub</a>
+        </article>
+        <article class="project-card">
+          <h3>Sales Forecasting Dashboard</h3>
+          <p>Real-time Power BI + Tableau sales dashboard</p>
+          <ul>
+            <li>Time-series forecasting</li>
+            <li>YoY/MoM trends</li>
+            <li>Dynamic slicers</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section id="experience" class="experience">
+      <h2>Recent Experience</h2>
+      <article>
+        <h3>Data & Insights Analyst | Future Labor Party (FLP)</h3>
+        <p class="date">Nov 2024 – Present</p>
+        <ul>
+          <li>Built PoliMap platform (Tableau, Power BI, PySpark, ML)</li>
+          <li>Delivered campaign-driven BI dashboards</li>
+        </ul>
+      </article>
+      <article>
+        <h3>Data Analyst Intern | Seven Network</h3>
+        <p class="date">Aug 2023 – Nov 2023</p>
+        <ul>
+          <li>Supported analytics for national TV campaigns</li>
+          <li>Variance analysis, Power BI reporting</li>
+        </ul>
+      </article>
+    </section>
+
     <!-- CONTACT -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-links">
-        <a href="mailto:hemgandhigithub13@email.com" class="contact-link email-btn">
-          <span class="icon">✉</span><span>Email</span>
-        </a>
-        <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="contact-link">
-          <span class="icon">💼</span><span>LinkedIn</span>
-        </a>
-        <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="contact-link">
-          <span class="icon">🔗</span><span>GitHub</span>
-        </a>
-        <a href="Hem_Gandhi_Resume.docx" class="contact-link resume-btn">
-          <span class="icon">⬇</span><span>Resume</span>
-        </a>
+    <section id="contact" class="contact">
+      <h2>Get In Touch</h2>
+      <p>I'm currently open to new opportunities in Data & Analytics roles.</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:hemgandhigithub13@email.com">hemgandhigithub13@email.com</a></p>
+        <p>Phone: <a href="tel:+61484653827">+61 484 653 827</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank">linkedin.com/in/hem-gandhi-92757b195</a></p>
+        <p>GitHub: <a href="https://github.com/hemgandhi13" target="_blank">github.com/hemgandhi13</a></p>
       </div>
     </section>
-    <!-- FOOTER -->
+
+    <!-- LOGISTICS -->
+    <section id="logistics" class="logistics">
+      <h2>Work Logistics</h2>
+      <ul>
+        <li>Location: Sydney, Australia</li>
+        <li>Visa: Unrestricted work rights</li>
+        <li>Availability: Immediate</li>
+        <li>Work mode: On-site, Hybrid, or Remote</li>
+      </ul>
+    </section>
+
     <footer>
-      <p>© <span id="year"></span> Hem Gandhi. All rights reserved.</p>
+      <p>&copy; 2025 Hem Gandhi. All rights reserved.</p>
     </footer>
   </div>
-  <script src="assets/js/main.js"></script>
 </body>
 </html>
