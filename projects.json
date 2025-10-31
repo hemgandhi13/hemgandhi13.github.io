@@ -6,7 +6,7 @@
       "approach": "ETL in Python/SQL with PostGIS spatial joins and FastAPI backend; QA pipeline + RBAC.",
       "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics; fewer manual checks.",
       "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "Leaflet", "Docker"],
-      "github": null,
+      "github": "https://github.com/hemgandhi13",
       "live": null,
       "selected": true
     },
@@ -16,7 +16,7 @@
       "approach": "EDA + feature engineering; XGBoost with calibrated thresholds; recall-first framing.",
       "outcome": "Recall ≈0.97 @0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
       "stack": ["Python", "scikit-learn", "XGBoost"],
-      "github": "https://github.com/hemgandhi13",
+      "github": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
       "live": null,
       "selected": true
     },
@@ -26,7 +26,7 @@
       "approach": "Built KPI/variance packs in Excel + SQL; standardized price/mix/volume drivers; templated exec summaries; added scenario notes referencing RWA/CAR.",
       "outcome": "Clear variance drivers; faster month-end decisions; reusable packs reduced rework cycles.",
       "stack": ["Excel", "SQL"],
-      "github": "https://github.com/hemgandhi13/citi-fpa",
+      "github": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
       "live": null,
       "selected": true
     },
@@ -56,7 +56,7 @@
       "approach": "Interactive Tableau dashboards with SQL data pipelines; defined metric calculations and refresh cadence.",
       "outcome": "Faster operational decisions; reduced manual report prep.",
       "stack": ["Tableau", "SQL", "Python"],
-      "github": null,
+      "github": "https://github.com/hemgandhi13",
       "live": null,
       "selected": true
     }
