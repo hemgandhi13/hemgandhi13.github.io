@@ -31,103 +31,259 @@
   }
   </script>
   <style>
-    /* NO sticky styling for hero section */
-    .hero {
-      background: var(--bg-primary, #fff);
-      padding: 2rem 1rem;
-      text-align: center;
+    /* CSS Reset & Variables */
+    :root {
+      --bg-primary: #fff;
+      --bg-secondary: #f9fafb;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,.1);
+      --radius: 8px;
     }
-    button, .btn {
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-secondary); color: var(--text-primary); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* Container & Section */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+    section { margin: 2.5rem 0; }
+    h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: .75rem; }
+    p, li { font-size: 1rem; color: var(--text-secondary); }
+
+    /* Hero Section */
+    .hero {
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+
+    .fit-strip {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .fit-strip .item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .9rem;
+      color: var(--text-secondary);
+    }
+
+    .fit-strip .item strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Buttons & Links */
+    .btn {
+      display: inline-block;
+      padding: .625rem 1.25rem;
+      border-radius: var(--radius);
+      font-weight: 500;
+      transition: all .2s;
       cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { border: 1px solid var(--border); background: var(--bg-primary); }
+    .btn-secondary:hover { background: var(--bg-secondary); }
+
+    /* Pill Badges */
+    .pill {
+      display: inline-block;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 500;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+    }
+
+    /* Card */
+    .card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Skill Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category h3 { margin-bottom: .5rem; }
+    .skill-category ul { display: flex; flex-direction: column; gap: .35rem; }
+    .skill-category li { font-size: .95rem; }
+
+    /* Project Card */
+    .project-item {
+      margin-bottom: 1.5rem;
+    }
+    .project-item h3 { margin-bottom: .5rem; }
+    .project-item p { margin-bottom: .75rem; }
+    .project-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg-primary);
+      font-size: .9rem;
+      color: var(--text-secondary);
     }
   </style>
 </head>
 <body>
-  <!-- Hero section -->
-  <section class="hero">
+
+<header class="hero">
+  <div class="container">
     <h1>Hem Gandhi</h1>
-    <p class="tagline">Data & Analytics — SQL • Python • BI • ML • DL • AI Foundations</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <p style="font-size:1.1rem; color:var(--text-secondary); margin:.5rem 0;">Data & Analytics Professional</p>
+    <div class="fit-strip">
+      <div class="item"><strong>Role:</strong> Data Analyst / Data Engineer</div>
+      <div class="item"><strong>Location:</strong> Sydney, Australia</div>
+      <div class="item"><strong>Visa Status:</strong> Work rights in Australia</div>
+    </div>
+    <div style="margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <a href="#contact" class="btn btn-primary">Contact Me</a>
+      <a href="#projects" class="btn btn-secondary">View Work</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Proof Section -->
+  <section id="proof">
+    <h2>Proof</h2>
+    <div class="card">
+      <p>I've built real solutions:</p>
+      <ul style="margin-top:.75rem; padding-left:1.25rem; list-style:disc;">
+        <li>Designed and implemented data pipelines using SQL, Python, and cloud platforms.</li>
+        <li>Created dashboards and reports in BI tools (Tableau, Power BI) used by stakeholders.</li>
+        <li>Applied machine learning models to solve business problems (forecasting, classification).</li>
+        <li>Delivered projects end-to-end: requirements gathering → analysis → visualization → deployment.</li>
+      </ul>
+    </div>
   </section>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Data & Analytics professional skilled in SQL, Python, BI tools, and foundational Machine Learning/Deep Learning.</p>
+  <!-- Stack Section -->
+  <section id="stack">
+    <h2>Tech Stack</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Data & Databases</h3>
+        <ul>
+          <li>SQL (PostgreSQL, MySQL, BigQuery)</li>
+          <li>NoSQL (MongoDB)</li>
+          <li>Data Warehousing</li>
+          <li>ETL/ELT Pipelines</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Programming & Scripting</h3>
+        <ul>
+          <li>Python (pandas, NumPy, requests)</li>
+          <li>Data Manipulation & Cleaning</li>
+          <li>Automation Scripts</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>BI & Visualization</h3>
+        <ul>
+          <li>Tableau</li>
+          <li>Power BI</li>
+          <li>Excel (Advanced)</li>
+          <li>Looker / Data Studio</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Machine Learning & AI</h3>
+        <ul>
+          <li>Scikit-Learn</li>
+          <li>TensorFlow / Keras</li>
+          <li>Model Training & Evaluation</li>
+          <li>AI Foundations (OpenAI, LLMs)</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Version Control & Collaboration</h3>
+        <ul>
+          <li>Git</li>
+          <li>GitHub</li>
+          <li>Documentation</li>
+          <li>Code Review</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills & Technologies</h2>
-    
-    <h3>SQL & Databases</h3>
-    <ul>
-      <li>SQL (complex queries, joins, subqueries, window functions)</li>
-      <li>PostgreSQL, MySQL, SQLite</li>
-      <li>Database design & optimization</li>
-    </ul>
-
-    <h3>Python & Data Analysis</h3>
-    <ul>
-      <li>Python (Pandas, NumPy, Matplotlib, Seaborn)</li>
-      <li>Data cleaning, transformation, exploratory analysis</li>
-      <li>Jupyter Notebooks</li>
-    </ul>
-
-    <h3>Business Intelligence & Visualization</h3>
-    <ul>
-      <li>Tableau, Power BI, Looker</li>
-      <li>Dashboard design & storytelling</li>
-      <li>Data-driven insights for stakeholders</li>
-    </ul>
-
-    <h3>Machine Learning & AI</h3>
-    <ul>
-      <li>Scikit-learn, TensorFlow, Keras basics</li>
-      <li>Supervised & unsupervised learning (regression, classification, clustering)</li>
-      <li>Deep Learning fundamentals (neural networks, CNNs, RNNs)</li>
-      <li>Model evaluation & feature engineering</li>
-    </ul>
-
-    <h3>Version Control & Collaboration</h3>
-    <ul>
-      <li>Git</li>
-      <li>GitHub</li>
-      <li>Documentation</li>
-      <li>Code Review</li>
-    </ul>
-  </section>
-
-  <!-- Projects -->
+  <!-- Selected Work Section -->
   <section id="projects">
-    <h2>Projects</h2>
-    <p><em>(Sample projects or link to GitHub repos)</em></p>
-    <ul>
-      <li><strong>Sales Dashboard:</strong> Built interactive Tableau dashboard for quarterly sales trends.</li>
-      <li><strong>Customer Segmentation:</strong> K-means clustering on transactional data (Python, Scikit-learn).</li>
-      <li><strong>Predictive Model:</strong> Logistic regression for churn prediction (accuracy ~85%).</li>
-    </ul>
+    <h2>Selected Work</h2>
+    <div id="projects-list">Loading projects...</div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section id="contact">
     <h2>Contact</h2>
-    <p>
-      <strong>Email:</strong> <a href="mailto:hemgandhigithub13@email.com">hemgandhigithub13@email.com</a><br>
-      <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank">linkedin.com/in/hem-gandhi-92757b195</a><br>
-      <strong>GitHub:</strong> <a href="https://github.com/hemgandhi13" target="_blank">github.com/hemgandhi13</a><br>
-      <strong>Phone:</strong> +61 484 653 827
-    </p>
-    <p><em>Open to full-time, contract, or freelance opportunities. Visa sponsorship may be required.</em></p>
+    <div class="card">
+      <p style="margin-bottom:1rem;">Open to opportunities in data analytics, engineering, and BI. Let's connect:</p>
+      <ul style="display:flex; flex-direction:column; gap:.5rem;">
+        <li><strong>Email:</strong> <a href="mailto:hemgandhigithub13@email.com" style="color:var(--accent);">hemgandhigithub13@email.com</a></li>
+        <li><strong>Phone:</strong> +61 484 653 827</li>
+        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" style="color:var(--accent);">linkedin.com/in/hem-gandhi-92757b195</a></li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" style="color:var(--accent);">github.com/hemgandhi13</a></li>
+      </ul>
+    </div>
   </section>
 
-  <footer>
+</main>
+
+<footer>
+  <div class="container">
     <p>&copy; 2025 Hem Gandhi. All rights reserved.</p>
-  </footer>
+  </div>
+</footer>
+
+<script>
+  // Load projects from projects.json
+  fetch('projects.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('projects-list');
+      if (!data.projects || data.projects.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-secondary);">No projects available.</p>';
+        return;
+      }
+      container.innerHTML = data.projects.map(proj => `
+        <div class="card project-item">
+          <h3>${proj.title}</h3>
+          <p>${proj.description}</p>
+          ${proj.link ? `<a href="${proj.link}" target="_blank" rel="noopener" class="btn btn-secondary">View Project</a>` : ''}
+          ${proj.tags && proj.tags.length > 0 ? `<div class="project-tags">${proj.tags.map(tag => `<span class="pill">${tag}</span>`).join('')}</div>` : ''}
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      console.error('Failed to load projects:', err);
+      document.getElementById('projects-list').innerHTML = '<p style="color:var(--text-secondary);">Failed to load projects.</p>';
+    });
+</script>
+
 </body>
 </html>
