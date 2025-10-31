@@ -30,6 +30,16 @@
     ]
   }
   </script>
+  <style>
+    /* Sticky fit strip */
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-primary, #fff);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -37,8 +47,7 @@
     <section id="hero" class="hero">
       <div class="hero-content">
         <h1>Hem Gandhi</h1>
-        <p class="tagline">Data &amp; Analytics — SQL • Python • BI • ML foundations</p>
-
+        <p class="tagline">Data & Analytics — SQL • Python • BI • ML • DL • AI Foundations</p>
         <!-- At-a-glance pills (answer the 5 basics fast) -->
         <div class="glance">
           <span class="pill accent">Analytics Eng • Data/BI Analyst • Jr DS/ML</span>
@@ -46,45 +55,40 @@
           <span class="pill">TR-485 full-time to Mar 2028</span>
           <span class="pill">Availability: 2–4 weeks</span>
         </div>
-
         <!-- Single CTA cluster (no redundancy elsewhere) -->
         <div class="cta-buttons">
           <a href="Hem_Gandhi_Resume.docx" class="btn-primary resume-btn">Download Resume (.docx)</a>
-          <a href="#projects" class="btn-secondary">View Projects</a>
-          <a href="mailto:hemgandhigithub13@email.com" class="btn-secondary email-btn">Email</a>
-          <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn</a>
-          <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="btn-secondary">GitHub</a>
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="mailto:hemgandhigithub13@email.com" class="btn-primary email-btn">Email</a>
+          <a href="https://www.linkedin.com/in/hem-gandhi-92757b195/" target="_blank" rel="noopener" class="btn-primary">LinkedIn</a>
+          <a href="https://github.com/hemgandhi13" target="_blank" rel="noopener" class="btn-primary">GitHub</a>
         </div>
-
         <div id="updated-stamp" class="updated small"></div>
       </div>
     </section>
-
     <!-- PROOF (IMPACT) -->
     <section id="impact">
       <h2>Proof (impact)</h2>
       <ul class="impact-list">
-        <li>Automated data-quality checks (Python/SQL) → manual QA ↓ <b>~30%</b>, usable records ↑ <b>12–18%</b>.</li>
-        <li>Stakeholder dashboards &amp; variance diagnostics → rework cycles reduced; faster decisions.</li>
+        <li>Automated data-quality checks (Python/SQL) → manual QA ↓ ~30%, usable records ↑ 12–18%.</li>
+        <li>Stakeholder dashboards & variance diagnostics → rework cycles reduced; faster decisions.</li>
         <li>Recall-first churn baseline (XGBoost) with calibrated thresholds; trade-offs documented.</li>
       </ul>
     </section>
-
     <!-- SELECTED PROJECTS -->
     <section id="projects">
       <h2>Selected Work</h2>
       <div id="project-list" class="project-grid"><!-- JS fills --></div>
       <div id="projects-empty" class="small muted" style="display:none">
-        (No projects could be loaded. Check <code>projects.json</code> is valid JSON.)
+        (No projects could be loaded. Check projects.json is valid JSON.)
       </div>
     </section>
-
     <!-- SKILLS -->
     <section id="skills">
       <h2>Stack</h2>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3>Data Analysis &amp; Engineering</h3>
+          <h3>Data Analysis & Engineering</h3>
           <ul>
             <li>SQL (PostgreSQL, MySQL)</li>
             <li>Python (pandas, NumPy)</li>
@@ -100,7 +104,7 @@
           </ul>
         </div>
         <div class="skill-category">
-          <h3>Machine Learning &amp; AI</h3>
+          <h3>Machine Learning & AI</h3>
           <ul>
             <li>scikit-learn</li>
             <li>TensorFlow/Keras</li>
@@ -109,7 +113,6 @@
         </div>
       </div>
     </section>
-
     <!-- CONTACT -->
     <section id="contact">
       <h2>Contact</h2>
@@ -128,13 +131,11 @@
         </a>
       </div>
     </section>
-
     <!-- FOOTER -->
     <footer>
-      <p>&copy; <span id="year"></span> Hem Gandhi. All rights reserved.</p>
+      <p>© <span id="year"></span> Hem Gandhi. All rights reserved.</p>
     </footer>
   </div>
-
   <script src="assets/js/main.js"></script>
 </body>
 </html>
