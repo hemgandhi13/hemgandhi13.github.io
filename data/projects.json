@@ -1,62 +1,33 @@
 {
   "projects": [
     {
-      "title": "Polimap — Geo-analytics (NDA)",
-      "problem": "Local area teams needed fast spatial insights for reporting and anomaly checks.",
-      "approach": "ETL in Python/SQL with PostGIS spatial joins and FastAPI backend; QA pipeline + RBAC.",
-      "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics; fewer manual checks.",
-      "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "Leaflet", "Docker"],
-      "github": "https://github.com/hemgandhi13",
+      "title": "Polimap — Geo-analytics",
+      "nda": true,
+      "problem": "Local area reporting needed fast spatial insight.",
+      "approach": "Python/SQL ETL, PostGIS spatial joins, FastAPI backend for Leaflet UI, RBAC + QA checks.",
+      "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics for field teams.",
+      "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "Leaflet"],
+      "repo": null,
       "live": null,
       "selected": true
     },
     {
-      "title": "PowerCo — Churn Prediction",
-      "problem": "Reduce churn by identifying high-risk customers while keeping false positives manageable.",
-      "approach": "EDA + feature engineering; XGBoost with calibrated thresholds; recall-first framing.",
-      "outcome": "Recall ≈0.97 @0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
+      "title": "PowerCo — Churn Baseline",
+      "problem": "Identify high-risk customers while keeping false positives manageable.",
+      "approach": "EDA & feature engineering; XGBoost with threshold calibration; recall-first framing.",
+      "outcome": "Recall ≈0.97 @ 0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
       "stack": ["Python", "scikit-learn", "XGBoost"],
-      "github": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
+      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
       "live": null,
       "selected": true
     },
     {
       "title": "Citi — FP&A Pack",
-      "problem": "Month-end required clear variance explanations and scenario notes tied to Basel III metrics.",
-      "approach": "Built KPI/variance packs in Excel + SQL; standardized price/mix/volume drivers; templated exec summaries; added scenario notes referencing RWA/CAR.",
-      "outcome": "Clear variance drivers; faster month-end decisions; reusable packs reduced rework cycles.",
-      "stack": ["Excel", "SQL"],
-      "github": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "Cognizant — Gala ML",
-      "problem": "Warehouses needed to predict stock availability and reduce stockouts.",
-      "approach": "Supervised regression with feature engineering on inventory & demand signals; evaluation and error analysis.",
-      "outcome": "Improved allocation decisions and lowered stockout risk (internal KPI uplift).",
-      "stack": ["Python", "scikit-learn", "pandas"],
-      "github": "https://github.com/hemgandhi13/cognizant-gala",
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "KPMG — Sales-CLV",
-      "problem": "Marketing needed segments and lifetime value signals to target offers efficiently.",
-      "approach": "RFM segmentation + predictive CLV modeling; dashboarded insights for campaigns.",
-      "outcome": "Clear segment actions and CLV forecasts to guide spend and targeting.",
-      "stack": ["Python", "Tableau", "SQL"],
-      "github": "https://github.com/hemgandhi13/kpmg-sales-clv",
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "Tata — BI Sprint",
-      "problem": "Execs needed real-time visibility into operational KPIs.",
-      "approach": "Interactive Tableau dashboards with SQL data pipelines; defined metric calculations and refresh cadence.",
-      "outcome": "Faster operational decisions; reduced manual report prep.",
-      "stack": ["Tableau", "SQL", "Python"],
-      "github": "https://github.com/hemgandhi13",
+      "problem": "Month-end needed clear variance explanations & scenario notes (Basel III-aware).",
+      "approach": "KPI/variance packs in Excel + SQL; standardised price/mix/volume drivers; templated exec notes.",
+      "outcome": "Faster, cleaner decisions; reusable packs reduced rework cycles.",
+      "stack": ["Excel/VBA", "SQL", "FP&A"],
+      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
       "live": null,
       "selected": true
     }
