@@ -1,92 +1,67 @@
-// Year + updated stamp
-document.addEventListener('DOMContentLoaded', () => {
+// stamps
+function stampDates() {
   const y = document.getElementById('year');
+  const u = document.getElementById('updated');
   if (y) y.textContent = new Date().getFullYear();
-  const u = document.getElementById('updated-stamp');
   if (u) u.textContent = 'Updated: ' + new Date().toLocaleDateString();
-  loadProjects();
-  initAnalytics();
-});
-// ===== Load and Display Projects =====
-async function loadProjects() {
-  const projectList = document.getElementById('project-list');
-  const empty = document.getElementById('projects-empty');
-  if (!projectList) return;
-  try {
-    const response = await fetch('projects.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error('Failed to fetch projects');
-    const data = await response.json();
-    if (!data || !Array.isArray(data.projects)) throw new Error('Invalid JSON shape');
-    // Only show selected=true
-    const selectedProjects = data.projects.filter(p => p.selected === true);
-    if (!selectedProjects.length) {
-      empty.style.display = 'block';
-      projectList.innerHTML = '';
-      return;
-    }
-    projectList.innerHTML = selectedProjects.map((project) => {
-      const hasPAO = project.problem || project.approach || project.outcome;
-      const kv = hasPAO ? `
-        <div class="kv small">
-          ${project.problem ? `Problem: ${escapeHtml(project.problem)}` : ''}
-          ${project.approach ? `Approach: ${escapeHtml(project.approach)}` : ''}
-          ${project.outcome ? `Outcome: ${escapeHtml(project.outcome)}` : ''}
-        </div>
-      ` : `<p class="project-description">${escapeHtml(project.description)}</p>`;
-      return `
-        <div class="project-card">
-          ${escapeHtml(project.title)}
-          ${kv}
-          ${Array.isArray(project.stack) && project.stack.length ? `
-            <div class="project-stack">
-              ${project.stack.map(tech => `<span class="stack-tag">${escapeHtml(tech)}</span>`).join('')}
-            </div>
-          ` : ''}
-          ${(project.github || project.live) ? `
-            <div class="project-links">
-              ${project.github ? `<a class="project-link" href="${project.github}" rel="noopener" target="_blank">Repo →</a>` : ''}
-              ${project.live ? `<a class="project-link" href="${project.live}" rel="noopener" target="_blank">Live →</a>` : ''}
-            </div>
-          ` : ''}
-        </div>
-      `;
-    }).join('');
-  } catch (err) {
-    console.error('Error loading projects:', err);
-    if (empty) empty.style.display = 'block';
-    if (projectList) projectList.innerHTML = '';
-  }
 }
-// Escape HTML to prevent XSS
+
+// tiny helper
 function escapeHtml(text) {
   if (!text) return '';
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
 }
-// ===== Analytics (Plausible custom events) =====
-function initAnalytics() {
-  // Email clicks
-  document.querySelectorAll('.email-btn, a[href^="mailto:"]').forEach(a => {
-    a.addEventListener('click', () => {
-      if (typeof plausible === 'function') plausible('Email Click');
-    });
-  });
-  // Resume clicks
-  document.querySelectorAll('.resume-btn').forEach(a => {
-    a.addEventListener('click', () => {
-      if (typeof plausible === 'function') plausible('Resume Download');
-    });
-  });
-  // Project links (delegation)
-  const list = document.getElementById('project-list');
-  if (list) {
-    list.addEventListener('click', (e) => {
-      const a = e.target.closest('a'); if (!a) return;
-      const txt = (a.textContent || '').toLowerCase();
-      if (typeof plausible !== 'function') return;
-      if (txt.includes('repo')) plausible('Project Repo Click', { props: { url: a.href } });
-      if (txt.includes('live')) plausible('Project Live Click', { props: { url: a.href } });
-    });
+
+// render one project card
+function renderProjectCard(p) {
+  const badge = p.nda ? '<span class="tag tag--badge">NDA</span>' :
+                (p.badge ? `<span class="tag tag--badge">${escapeHtml(p.badge)}</span>` : '');
+
+  const stack = (p.stack || [])
+    .map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('');
+
+  const links = p.repo
+    ? `<a class="btn btn-ghost" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener">Open Repo →</a>`
+    : `<span class="p small">Repo not public${p.nda ? ' (NDA)' : ''}</span>`;
+
+  return `
+    <article class="project" aria-label="${escapeHtml(p.title)}">
+      <h3>${escapeHtml(p.title)} ${badge}</h3>
+      ${p.problem ? `<p><strong>Problem:</strong> ${escapeHtml(p.problem)}</p>` : ''}
+      ${p.approach ? `<p><strong>Approach:</strong> ${escapeHtml(p.approach)}</p>` : ''}
+      ${p.outcome ? `<p><strong>Outcome:</strong> ${escapeHtml(p.outcome)}</p>` : ''}
+      <div class="meta">${stack}</div>
+      <div class="links">${links}</div>
+    </article>
+  `;
+}
+
+// load & inject projects
+async function loadProjects() {
+  const container = document.getElementById('project-list');
+  if (!container) return;
+
+  try {
+    const res = await fetch('data/projects.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to fetch projects');
+    const payload = await res.json();
+
+    const projects = (payload.projects || payload).filter(p => p.selected !== false);
+    if (!projects.length) {
+      container.innerHTML = '<p class="small">No projects to display yet.</p>';
+      return;
+    }
+
+    container.innerHTML = projects.map(renderProjectCard).join('');
+  } catch (e) {
+    console.error(e);
+    container.innerHTML = '<p class="small">Unable to load projects right now.</p>';
   }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  stampDates();
+  loadProjects();
+});
