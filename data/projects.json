@@ -30,6 +30,26 @@
       "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
       "live": null,
       "selected": true
+    },
+    {
+      "title": "PowerCo — Churn Baseline",
+      "problem": "Identify high-risk customers while keeping false positives manageable.",
+      "approach": "EDA & feature engineering; XGBoost with threshold calibration; recall-first framing.",
+      "outcome": "Recall ≈0.97 @ 0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
+      "stack": ["Python", "scikit-learn", "XGBoost"],
+      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
+      "live": null,
+      "selected": true
+    },
+    {
+      "title": "Citi — FP&A Pack",
+      "problem": "Month-end needed clear variance explanations & scenario notes (Basel III-aware).",
+      "approach": "KPI/variance packs in Excel + SQL; standardised price/mix/volume drivers; templated exec notes.",
+      "outcome": "Faster, cleaner decisions; reusable packs reduced rework cycles.",
+      "stack": ["Excel/VBA", "SQL", "FP&A"],
+      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
+      "live": null,
+      "selected": true
     }
   ]
 }
