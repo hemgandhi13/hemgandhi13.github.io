@@ -30,36 +30,6 @@
       "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
       "live": null,
       "selected": true
-    },
-//     {
-//       "title": "Cognizant — Gala ML",
-//       "problem": "Warehouses needed to predict stock availability and reduce stockouts.",
-//       "approach": "Supervised regression with feature engineering on inventory & demand signals; evaluation and error analysis.",
-//       "outcome": "Improved allocation decisions and lowered stockout risk (internal KPI uplift).",
-//       "stack": ["Python", "scikit-learn", "pandas"],
-//       "github": "https://github.com/hemgandhi13/cognizant-gala",
-//       "live": null,
-//       "selected": true
-//     },
-//     {
-//       "title": "KPMG — Sales-CLV",
-//       "problem": "Marketing needed segments and lifetime value signals to target offers efficiently.",
-//       "approach": "RFM segmentation + predictive CLV modeling; dashboarded insights for campaigns.",
-//       "outcome": "Clear segment actions and CLV forecasts to guide spend and targeting.",
-//       "stack": ["Python", "Tableau", "SQL"],
-//       "github": "https://github.com/hemgandhi13/kpmg-sales-clv",
-//       "live": null,
-//       "selected": true
-//     },
-//     {
-//       "title": "Tata — BI Sprint",
-//       "problem": "Execs needed real-time visibility into operational KPIs.",
-//       "approach": "Interactive Tableau dashboards with SQL data pipelines; defined metric calculations and refresh cadence.",
-//       "outcome": "Faster operational decisions; reduced manual report prep.",
-//       "stack": ["Tableau", "SQL", "Python"],
-//       "github": "https://github.com/hemgandhi13",
-//       "live": null,
-//       "selected": true
-//     }
+    }
   ]
 }
