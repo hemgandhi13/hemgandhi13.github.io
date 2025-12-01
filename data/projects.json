@@ -1,50 +1,71 @@
 {
-  "projects": [
-    {
-  "title": "ATS Resume Analyzer — JD Fit Copilot",
-  "nda": false,
-  "problem": "Tailoring resumes to specific JDs was ad hoc; no visibility into ATS keyword coverage or evidence.",
-  "approach": "Streamlit app with PDF/DOCX parsing, JD keyword extraction, ATS-style scoring, semantic evidence ranking and optional LLM suggestions.",
-  "outcome": "Turns a JD + resume into explainable fit scores and ranked bullets in seconds; makes resume iterations data-driven instead of guesswork.",
-  "stack": ["Python", "NLP", "Streamlit", "scikit-learn", "sentence-transformers", "PyTorch", "LLMs", "LiteLLM", "Docker", "uv + pyproject.toml"],
-  "repo": "https://github.com/hemgandhi13/ats_resume_analyzer",
-  "live": "https://atsresumeanalyzer-wqf8cfyyqbg9wpha7rfhze.streamlit.app/",
-  "selected": true
-    },
-    {
-      "title": "Polimap — Geo-analytics",
-      "nda": true,
-      "problem": "Local area reporting needed fast spatial insight.",
-      "approach": "Python/SQL ETL, PostGIS spatial joins, FastAPI backend for Leaflet UI, RBAC + QA checks.",
-      "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics for field teams.",
-      "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "Leaflet"],
-      "repo": null,
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "PowerCo — Churn Baseline",
-      "problem": "Identify high-risk customers while keeping false positives manageable.",
-      "approach": "EDA & feature engineering; XGBoost with threshold calibration; recall-first framing.",
-      "outcome": "Recall ≈0.97 @ 0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
-      "stack": ["Python", "scikit-learn", "XGBoost"],
-      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "Citi — FP&A Pack",
-      "problem": "Month-end needed clear variance explanations & scenario notes (Basel III-aware).",
-      "approach": "KPI/variance packs in Excel + SQL; standardised price/mix/volume drivers; templated exec notes.",
-      "outcome": "Faster, cleaner decisions; reusable packs reduced rework cycles.",
-      "stack": ["Excel/VBA", "SQL", "FP&A"],
-      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
-      "live": null,
-      "selected": true
-    }
-  ]
+    "projects": [
+        {
+            "title": "ATS Resume Analyzer — JD Fit Copilot",
+            "nda": false,
+            "problem": "Tailoring resumes to specific JDs was ad hoc; no visibility into ATS keyword coverage or evidence.",
+            "approach": "Streamlit app with PDF/DOCX parsing, JD keyword extraction, ATS-style scoring, semantic evidence ranking and optional LLM suggestions.",
+            "outcome": "Turns a JD + resume into explainable fit scores and ranked bullets in seconds; makes resume iterations data-driven instead of guesswork.",
+            "stack": [
+                "Python",
+                "NLP",
+                "Streamlit",
+                "scikit-learn",
+                "sentence-transformers",
+                "PyTorch",
+                "LLMs",
+                "LiteLLM",
+                "Docker",
+                "uv + pyproject.toml"
+            ],
+            "repo": "https://github.com/hemgandhi13/ats_resume_analyzer",
+            "live": "https://atsresumeanalyzer-wqf8cfyyqbg9wpha7rfhze.streamlit.app/",
+            "selected": true
+        },
+        {
+            "title": "Polimap — Geo-analytics",
+            "nda": true,
+            "problem": "Local area reporting needed fast spatial insight.",
+            "approach": "Python/SQL ETL, PostGIS spatial joins, FastAPI backend for Leaflet UI, RBAC + QA checks.",
+            "outcome": "Heatmaps render ~10k points in ~3s; reliable spatial metrics for field teams.",
+            "stack": [
+                "Python",
+                "PostgreSQL",
+                "PostGIS",
+                "FastAPI",
+                "Leaflet"
+            ],
+            "repo": null,
+            "live": null,
+            "selected": true
+        },
+        {
+            "title": "PowerCo — Churn Baseline",
+            "problem": "Identify high-risk customers while keeping false positives manageable.",
+            "approach": "EDA & feature engineering; XGBoost with threshold calibration; recall-first framing.",
+            "outcome": "Recall ≈0.97 @ 0.30 threshold (precision trade-off noted); clear stakeholder guidance.",
+            "stack": [
+                "Python",
+                "scikit-learn",
+                "XGBoost"
+            ],
+            "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
+            "live": null,
+            "selected": true
+        },
+        {
+            "title": "Citi — FP&A Pack",
+            "problem": "Month-end needed clear variance explanations & scenario notes (Basel III-aware).",
+            "approach": "KPI/variance packs in Excel + SQL; standardised price/mix/volume drivers; templated exec notes.",
+            "outcome": "Faster, cleaner decisions; reusable packs reduced rework cycles.",
+            "stack": [
+                "Excel/VBA",
+                "SQL",
+                "FP&A"
+            ],
+            "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
+            "live": null,
+            "selected": true
+        }
+    ]
 }
-
-
-
-
