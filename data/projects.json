@@ -6,23 +6,11 @@
   "problem": "Tailoring resumes to specific JDs was ad hoc; no visibility into ATS keyword coverage or evidence.",
   "approach": "Streamlit app with PDF/DOCX parsing, JD keyword extraction, ATS-style scoring, semantic evidence ranking and optional LLM suggestions.",
   "outcome": "Turns a JD + resume into explainable fit scores and ranked bullets in seconds; makes resume iterations data-driven instead of guesswork.",
-  "stack": [
-    "Python",
-    "NLP",
-    "Streamlit",
-    "scikit-learn",
-    "sentence-transformers",
-    "PyTorch (CPU)",
-    "LLMs",
-    "LiteLLM",
-    "Docker",
-    "uv + pyproject.toml"
-  ],
+  "stack": ["Python", "NLP", "Streamlit", "scikit-learn", "sentence-transformers", "PyTorch", "LLMs", "LiteLLM", "Docker", "uv + pyproject.toml"],
   "repo": "https://github.com/hemgandhi13/ats_resume_analyzer",
   "live": "https://atsresumeanalyzer-wqf8cfyyqbg9wpha7rfhze.streamlit.app/",
   "selected": true
-}
-
+    },
     {
       "title": "Polimap — Geo-analytics",
       "nda": true,
