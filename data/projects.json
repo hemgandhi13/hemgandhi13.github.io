@@ -5,7 +5,7 @@
       "nda": false,
       "problem": "Leaders needed one source of truth to monitor commercial performance, detect discount leakage, quantify fulfilment risk, and track customer retention — with governed KPIs and auditable data quality.",
       "approach": "Built a medallion pipeline (Bronze → Silver → Gold) in Databricks, produced Gold star-schema fact/dim tables, and delivered a 9-page Power BI executive dashboard with a DAX KPI pack, market-level RLS, and Performance Analyzer validation. Designed a Snowflake trial serving layer plus a CSV fallback so the report remains refreshable after trial expiry.",
-      "outcome": "Recruiter-grade BI proof: star schema semantic model + KPI definitions + trust checks (row counts/FK coverage) + market-based RLS + performance-tested leakage analysis — packaged with screenshots and documentation for review without Power BI Service.",
+      "outcome": "Star schema semantic model + KPI definitions + trust checks (row counts/FK coverage) + market-based RLS + performance-tested leakage analysis — packaged with screenshots and documentation for review without Power BI Service.",
       "stack": [
         "Databricks (Bronze/Silver/Gold)",
         "SQL",
