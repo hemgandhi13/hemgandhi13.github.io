@@ -1,67 +1,129 @@
-// stamps
-function stampDates() {
-  const y = document.getElementById('year');
-  const u = document.getElementById('updated');
-  if (y) y.textContent = new Date().getFullYear();
-  if (u) u.textContent = 'Updated: ' + new Date().toLocaleDateString();
-}
+/* Portfolio runtime: renders the project cards from data/projects.json.
+ *
+ * Projects live in JSON rather than in the markup so adding or reordering work is a
+ * one-file edit, and so the same data could feed a resume generator later. Everything
+ * that reaches innerHTML goes through escapeHtml first.
+ */
 
-// tiny helper
+const BADGE_CLASS = { live: "badge--live", nda: "badge--nda", flag: "badge--flag" };
+
 function escapeHtml(text) {
-  if (!text) return '';
-  const div = document.createElement('div');
-  div.textContent = text;
+  if (text === null || text === undefined) return "";
+  const div = document.createElement("div");
+  div.textContent = String(text);
   return div.innerHTML;
 }
 
-// render one project card
-function renderProjectCard(p) {
-  const badge = p.nda ? '<span class="tag tag--badge">NDA</span>' :
-                (p.badge ? `<span class="tag tag--badge">${escapeHtml(p.badge)}</span>` : '');
-
-  const stack = (p.stack || [])
-    .map(s => `<span class="tag">${escapeHtml(s)}</span>`).join('');
-
-  const links = p.repo
-    ? `<a class="btn btn-ghost" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener">Open Repo →</a>`
-    : `<span class="p small">Repo not public${p.nda ? ' (NDA)' : ''}</span>`;
-
-  return `
-    <article class="project" aria-label="${escapeHtml(p.title)}">
-      <h3>${escapeHtml(p.title)} ${badge}</h3>
-      ${p.problem ? `<p><strong>Problem:</strong> ${escapeHtml(p.problem)}</p>` : ''}
-      ${p.approach ? `<p><strong>Approach:</strong> ${escapeHtml(p.approach)}</p>` : ''}
-      ${p.outcome ? `<p><strong>Outcome:</strong> ${escapeHtml(p.outcome)}</p>` : ''}
-      <div class="meta">${stack}</div>
-      <div class="links">${links}</div>
-    </article>
-  `;
+function tagList(stack) {
+  if (!stack || !stack.length) return "";
+  return `<div class="tags">${stack
+    .map((s) => `<span class="tag">${escapeHtml(s)}</span>`)
+    .join("")}</div>`;
 }
 
-// load & inject projects
+/** A featured project: the full problem, approach and evidence treatment. */
+function featuredCard(p) {
+  const badge = p.badge
+    ? `<span class="badge ${BADGE_CLASS[p.badgeKind] || "badge--flag"}">${escapeHtml(p.badge)}</span>`
+    : "";
+
+  const points = (p.points || [])
+    .map((pt) => `<li>${escapeHtml(pt)}</li>`)
+    .join("");
+
+  // The live link is the strongest thing on this page, so it gets primary styling
+  // wherever it exists. A project with no public source says why, rather than
+  // leaving a reader to assume there is nothing to show.
+  const links = [
+    p.live
+      ? `<a class="btn btn-primary" href="${escapeHtml(p.live)}" target="_blank" rel="noopener">${escapeHtml(p.liveLabel || "View live")}</a>`
+      : "",
+    p.repo
+      ? `<a class="btn" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener">Source on GitHub</a>`
+      : "",
+    p.note ? `<span class="muted-note">${escapeHtml(p.note)}</span>` : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
+  return `
+    <article class="project project--feature">
+      <div class="project__top">
+        <div>
+          <h3>${escapeHtml(p.title)}</h3>
+          ${p.subtitle ? `<p class="project__sub">${escapeHtml(p.subtitle)}</p>` : ""}
+        </div>
+        ${badge}
+      </div>
+      <div class="project__body">
+        ${p.problem ? `<p><strong>The problem.</strong> ${escapeHtml(p.problem)}</p>` : ""}
+        ${p.approach ? `<p><strong>What I built.</strong> ${escapeHtml(p.approach)}</p>` : ""}
+        ${points ? `<ul class="project__points">${points}</ul>` : ""}
+      </div>
+      ${tagList(p.stack)}
+      ${links ? `<div class="project__links">${links}</div>` : ""}
+    </article>`;
+}
+
+/** A supporting project: one line of outcome and a link. */
+function compactCard(p) {
+  return `
+    <article class="project">
+      <h3>${escapeHtml(p.title)}</h3>
+      ${p.subtitle ? `<p class="project__sub">${escapeHtml(p.subtitle)}</p>` : ""}
+      <div class="project__body"><p>${escapeHtml(p.outcome)}</p></div>
+      ${tagList(p.stack)}
+      ${
+        p.repo
+          ? `<div class="project__links"><a class="btn" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener">Source on GitHub</a></div>`
+          : ""
+      }
+    </article>`;
+}
+
 async function loadProjects() {
-  const container = document.getElementById('project-list');
-  if (!container) return;
+  const featuredEl = document.getElementById("featured-list");
+  const moreEl = document.getElementById("more-list");
+  if (!featuredEl) return;
 
   try {
-    const res = await fetch('data/projects.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('Failed to fetch projects');
-    const payload = await res.json();
+    const res = await fetch("data/projects.json", { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
 
-    const projects = (payload.projects || payload).filter(p => p.selected !== false);
-    if (!projects.length) {
-      container.innerHTML = '<p class="small">No projects to display yet.</p>';
-      return;
-    }
-
-    container.innerHTML = projects.map(renderProjectCard).join('');
-  } catch (e) {
-    console.error(e);
-    container.innerHTML = '<p class="small">Unable to load projects right now.</p>';
+    featuredEl.innerHTML = (data.featured || []).map(featuredCard).join("");
+    if (moreEl) moreEl.innerHTML = (data.more || []).map(compactCard).join("");
+  } catch (err) {
+    console.error(err);
+    // Never leave an empty section: fall back to the one link that matters most.
+    featuredEl.innerHTML = `
+      <article class="project project--feature">
+        <h3>Selected work</h3>
+        <div class="project__body">
+          <p>The project list could not load. Everything is on GitHub in the meantime.</p>
+        </div>
+        <div class="project__links">
+          <a class="btn btn-primary" href="https://hemgandhi13.github.io/grid-cost-transparency/" target="_blank" rel="noopener">Open the live dashboard</a>
+          <a class="btn" href="https://github.com/hemgandhi13" target="_blank" rel="noopener">GitHub profile</a>
+        </div>
+      </article>`;
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function stampDates() {
+  const year = document.getElementById("year");
+  const updated = document.getElementById("updated");
+  if (year) year.textContent = new Date().getFullYear();
+  if (updated) {
+    // Build date, not visit date: a page that always claims "updated today" tells a
+    // reader nothing. LAST_UPDATED is bumped when the content actually changes.
+    updated.textContent = `Last updated ${LAST_UPDATED}`;
+  }
+}
+
+const LAST_UPDATED = "September 2026";
+
+document.addEventListener("DOMContentLoaded", () => {
   stampDates();
   loadProjects();
 });

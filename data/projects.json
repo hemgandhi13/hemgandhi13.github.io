@@ -1,118 +1,79 @@
 {
-  "projects": [
+  "featured": [
     {
-      "title": "Commercial + Fulfilment Executive Dashboard (v1) — DataCo Supply Chain",
-      "nda": false,
-      "problem": "Leaders needed one source of truth to monitor commercial performance, detect discount leakage, quantify fulfilment risk, and track customer retention — with governed KPIs and auditable data quality.",
-      "approach": "Built a medallion pipeline (Bronze → Silver → Gold) in Databricks, produced Gold star-schema fact/dim tables, and delivered a 9-page Power BI executive dashboard with a DAX KPI pack, market-level RLS, and Performance Analyzer validation. Designed a Snowflake trial serving layer plus a CSV fallback so the report remains refreshable after trial expiry.",
-      "outcome": "Star schema semantic model + KPI definitions + trust checks (row counts/FK coverage) + market-based RLS + performance-tested leakage analysis — packaged with screenshots and documentation for review without Power BI Service.",
-      "stack": [
-        "Databricks (Bronze/Silver/Gold)",
-        "SQL",
-        "Snowflake (trial serving layer)",
-        "Power BI",
-        "Power Query",
-        "DAX (KPI pack + time intelligence)",
-        "Dimensional modelling (star schema)",
-        "Data quality checks (row counts, FK coverage)",
-        "Row-Level Security (RLS)",
-        "Performance Analyzer / optimisation",
-        "Git/GitHub documentation"
+      "title": "Who's Paying for the Grid Transition?",
+      "subtitle": "Australian electricity network costs, source data to dashboard",
+      "badge": "Live demo",
+      "badgeKind": "live",
+      "problem": "Australian network charges rose sharply into 2026, but the data explaining why is scattered across dozens of regulator spreadsheets, one per network per year.",
+      "approach": "Built the whole chain: Python ingestion into PostgreSQL, dbt transformations into six tested marts, then a five-page Power BI report version-controlled as TMDL and PBIR.",
+      "points": [
+        "18 regulated networks, 2006 to 2024, from AER, AEMO and state regulator sources",
+        "74 DAX measures over a star schema, with red/amber/green thresholds computed from the data rather than hardcoded",
+        "80 dbt tests, and every known gap in the source data is stated on the page instead of hidden",
+        "Rebuilt as an interactive site anyone can open, plus a verification script that recomputes all 35 headline figures in SQL and checks them against what the page renders"
       ],
-      "repo": "https://github.com/hemgandhi13/databricks-snowflake-medallion-pipeline",
-      "live": null,
-      "selected": true
+      "stack": ["Python", "PostgreSQL", "dbt", "Power BI", "DAX", "JavaScript"],
+      "live": "https://hemgandhi13.github.io/grid-cost-transparency/",
+      "liveLabel": "Open the live dashboard",
+      "repo": "https://github.com/hemgandhi13/grid-cost-transparency"
     },
     {
-      "title": "Citi — FP&A Pack",
-      "nda": false,
-      "problem": "Month-end needed clear variance explanations and consistent commentary to support faster commercial decisions.",
-      "approach": "Built KPI/variance packs using Excel + SQL with standardised price/mix/volume drivers and templated executive insights for repeatable reporting.",
-      "outcome": "Improved clarity and consistency of month-end reporting with reusable packs that reduce rework and accelerate decision cycles.",
-      "stack": [
-        "Excel",
-        "SQL",
-        "FP&A",
-        "KPI & variance analysis",
-        "Price/mix/volume drivers",
-        "Management reporting",
-        "Executive commentary"
+      "title": "Commercial + Fulfilment Analytics",
+      "subtitle": "Medallion pipeline to a 9-page executive dashboard",
+      "badge": "Flagship build",
+      "badgeKind": "flag",
+      "problem": "Operational dashboards report late deliveries and discounts as counts. Commercial teams need those priced in dollars against net profit before they can act on them.",
+      "approach": "Databricks medallion pipeline (Bronze to Silver to Gold) feeding a conformed star schema, served through Snowflake into a version-controlled Power BI report.",
+      "points": [
+        "180,519 order lines across 2 fact tables and 9 conformed dimensions",
+        "Activity-based cost-to-serve model turning delivery risk and trade spend into net profit impact",
+        "Three What-If scenario sliders (freight surcharge, MOQ threshold, rebate shift) cascading live through the model",
+        "Market-level row-level security, row-count and foreign-key reconciliation, and Performance Analyzer profiling",
+        "A cohort retention bug found and fixed along the way, where a blunt filter was wiping row context and reporting retention rates of 499% to 1775%"
       ],
-      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship",
-      "live": null,
-      "selected": true
+      "stack": ["Databricks", "PySpark", "Snowflake", "Power BI", "DAX", "SQL"],
+      "repo": "https://github.com/hemgandhi13/commercial-fulfilment-analytics"
     },
     {
-      "title": "PowerCo — Churn Baseline",
-      "nda": false,
-      "problem": "Identify high-risk customers while keeping false positives manageable for retention outreach.",
-      "approach": "EDA + feature engineering; trained models (XGBoost, RF, logistic regression) with threshold calibration and recall-first framing; translated outputs into stakeholder-friendly retention actions.",
-      "outcome": "Recall ≈0.97 at tuned threshold (precision trade-off noted) with clear guidance on segments and operationalisation for retention teams.",
-      "stack": [
-        "Python",
-        "pandas",
-        "NumPy",
-        "Jupyter",
-        "scikit-learn",
-        "XGBoost",
-        "Random Forest",
-        "Logistic Regression",
-        "EDA & data cleaning",
-        "Feature engineering",
-        "Model evaluation (Precision/Recall/F1/AUC)",
-        "Threshold tuning & cross-validation",
-        "Customer churn & retention insights"
+      "title": "Polimap, geo-analytics platform",
+      "subtitle": "Master's capstone, High Distinction",
+      "badge": "Under NDA",
+      "badgeKind": "nda",
+      "problem": "Decision-makers needed Australian electoral and census data as maps and charts they could interrogate, not as raw statistical releases.",
+      "approach": "Reproducible ETL into PostgreSQL and PostGIS, a FastAPI backend, and a React and Leaflet front end serving maps, charts and tables.",
+      "points": [
+        "Relational schema design and download, clean, standardise, load pipelines producing join-ready tables",
+        "Data quality controls for uniqueness, referential integrity and coverage",
+        "Role-based access control, and stakeholder demos and handover documentation delivered under NDA"
       ],
-      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis",
-      "live": null,
-      "selected": true
-    },
-    {
-      "title": "Polimap — Geo-analytics",
-      "nda": true,
-      "problem": "Local area reporting needed fast spatial insight for operational and field decisions.",
-      "approach": "Built an ETL workflow with spatial joins in PostGIS and an API layer to support map-based reporting; added access control patterns and QA checks for reliable metrics.",
-      "outcome": "Delivered reliable geospatial reporting with fast rendering and decision-ready spatial metrics for operations-style use cases.",
-      "stack": [
-        "Python",
-        "pandas",
-        "SQL",
-        "PostgreSQL",
-        "PostGIS",
-        "ETL & data pipelines",
-        "Data modelling & data quality",
-        "FastAPI",
-        "REST APIs",
-        "React",
-        "Leaflet (markers, heatmaps, clustering)",
-        "Geospatial analytics & spatial joins",
-        "RBAC / access control",
-        "Performance optimisation",
-        "Git/GitHub"
-      ],
+      "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "React", "Leaflet"],
       "repo": null,
-      "live": null,
-      "selected": true
+      "note": "Source stays private under the client NDA. Happy to walk through the architecture in a call."
+    }
+  ],
+
+  "more": [
+    {
+      "title": "PowerCo churn baseline",
+      "subtitle": "BCG X simulation",
+      "outcome": "Compared XGBoost, random forest and logistic regression on a recall-first framing, tuned the threshold to about 0.97 recall, and documented the precision trade-off rather than burying it.",
+      "stack": ["Python", "scikit-learn", "XGBoost"],
+      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis"
     },
     {
-      "title": "ATS Resume Analyzer — JD Fit Copilot",
-      "nda": false,
-      "problem": "Tailoring resumes to specific JDs was ad hoc; no visibility into keyword coverage or evidence alignment.",
-      "approach": "Streamlit app with PDF/DOCX parsing, JD keyword extraction, explainable scoring, and ranked evidence suggestions to support structured iteration.",
-      "outcome": "Turns a JD + resume into explainable fit scores and ranked evidence in seconds; speeds up iteration and reduces guesswork.",
-      "stack": [
-        "Python",
-        "NLP",
-        "Streamlit",
-        "scikit-learn",
-        "sentence-transformers",
-        "PyTorch",
-        "Docker",
-        "uv + pyproject.toml"
-      ],
-      "repo": "https://github.com/hemgandhi13/ats_resume_analyzer",
-      "live": "https://atsresumeanalyzer-wqf8cfyyqbg9wpha7rfhze.streamlit.app/",
-      "selected": false
+      "title": "Citi FP&A pack",
+      "subtitle": "Forage virtual experience",
+      "outcome": "Month-end variance packs in Excel and SQL with standardised price, mix and volume drivers, plus templated executive commentary so the analysis was repeatable.",
+      "stack": ["Excel/VBA", "SQL", "FP&A"],
+      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship"
+    },
+    {
+      "title": "ATS resume analyzer",
+      "subtitle": "Side project",
+      "outcome": "Streamlit app that parses PDF and DOCX resumes, extracts job-description keywords, and returns an explainable fit score with ranked evidence suggestions.",
+      "stack": ["Python", "NLP", "Streamlit", "sentence-transformers"],
+      "repo": "https://github.com/hemgandhi13/ats_resume_analyzer"
     }
   ]
 }
