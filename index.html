@@ -14,7 +14,11 @@
   <meta property="og:locale" content="en_AU" />
   <meta name="twitter:card" content="summary" />
   <meta name="theme-color" content="#1d4ed8" />
+  <!-- SVG for modern browsers, .ico fallback so Safari and Windows still get an icon
+       and browsers stop auto-requesting a /favicon.ico that does not exist. -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
