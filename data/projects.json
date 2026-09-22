@@ -5,31 +5,33 @@
       "subtitle": "Australian electricity network costs, source data to dashboard",
       "badge": "Live demo",
       "badgeKind": "live",
-      "problem": "Australian network charges rose sharply into 2026, but the data explaining why is scattered across dozens of regulator spreadsheets, one per network per year.",
-      "approach": "Built the whole chain: Python ingestion into PostgreSQL, dbt transformations into six tested marts, then a five-page Power BI report version-controlled as TMDL and PBIR.",
+      "problem": "Australian network charges rose sharply into 2026, but the data explaining why sits across dozens of AER spreadsheets, one per network per year. Nobody can easily see where the money goes or whether the spend is justified.",
+      "approach": "Built the whole chain: Python ingestion into PostgreSQL, dbt transformations into six tested marts, then a five-page Power BI report version-controlled as TMDL and PBIR. Specified in a full BRD before any of it was built.",
       "points": [
-        "18 regulated networks, 2006 to 2024, from AER, AEMO and state regulator sources",
-        "74 DAX measures over a star schema, with red/amber/green thresholds computed from the data rather than hardcoded",
-        "80 dbt tests, and every known gap in the source data is stated on the page instead of hidden",
-        "Rebuilt as an interactive site anyone can open, plus a verification script that recomputes all 35 headline figures in SQL and checks them against what the page renders"
+        "All 18 regulated networks (13 DNSPs and 5 TNSPs), 2006 to 2024, from AER RIN, determination, DMO/VDO and AEMO sources",
+        "The 2024 fleet ran capex 6.5% and opex 1.6% above AER-approved allowances, and the DMO network charge rose 17.7% to $853.34 a year",
+        "Found that spend per customer correlates with worse reliability at +0.74, then showed it is customer density driving both (-0.84), not inefficiency. A cost-per-customer league table without a density adjustment measures geography",
+        "75 DAX measures on a six-mart star schema, 80 automated dbt tests, and red/amber/green thresholds computed from the data rather than hardcoded",
+        "A verification script recomputes all 35 headline figures in SQL and diffs them against what the page renders. 35 of 35 match, after it first caught two real defects",
+        "Every known gap in the source data is stated on the page instead of hidden. Only 10 of 18 networks publish a bill breakdown at all"
       ],
-      "stack": ["Python", "PostgreSQL", "dbt", "Power BI", "DAX", "JavaScript"],
+      "stack": ["Python", "PostgreSQL", "dbt", "Power BI", "DAX", "TMDL", "JavaScript"],
       "live": "https://hemgandhi13.github.io/grid-cost-transparency/",
       "liveLabel": "Open the live dashboard",
       "repo": "https://github.com/hemgandhi13/grid-cost-transparency"
     },
     {
       "title": "Commercial + Fulfilment Analytics",
-      "subtitle": "Medallion pipeline to a 9-page executive dashboard",
-      "badge": "Flagship build",
+      "subtitle": "Power BI engineering: performance, governance, version control",
+      "badge": "Technical exhibit",
       "badgeKind": "flag",
-      "problem": "Operational dashboards report late deliveries and discounts as counts. Commercial teams need those priced in dollars against net profit before they can act on them.",
-      "approach": "Databricks medallion pipeline (Bronze to Silver to Gold) feeding a conformed star schema, served through Snowflake into a version-controlled Power BI report.",
+      "problem": "A reporting layer is only trustworthy if it is fast, access-controlled, and reviewable. This build exists to push those three things rather than the domain.",
+      "approach": "Databricks medallion pipeline (Bronze to Silver to Gold) feeding a conformed star schema, served through Snowflake into a Power BI report committed entirely as text.",
       "points": [
-        "180,519 order lines across 2 fact tables and 9 conformed dimensions",
-        "Activity-based cost-to-serve model turning delivery risk and trade spend into net profit impact",
-        "Three What-If scenario sliders (freight surcharge, MOQ threshold, rebate shift) cascading live through the model",
-        "Market-level row-level security, row-count and foreign-key reconciliation, and Performance Analyzer profiling",
+        "180,519 order lines across 2 fact tables and 9 conformed dimensions, with zero missing foreign keys",
+        "60+ DAX measures across 13 display folders, and query response tuned to 164 ms measured in DAX Studio",
+        "Market-level row-level security with two roles, plus row-count and foreign-key reconciliation checks",
+        "The whole 9-page report is committed as 91,000 lines of TMDL and PBIR text with no binary .pbix, so the semantic model is reviewable as a diff",
         "A cohort retention bug found and fixed along the way, where a blunt filter was wiping row context and reporting retention rates of 499% to 1775%"
       ],
       "stack": ["Databricks", "PySpark", "Snowflake", "Power BI", "DAX", "SQL"],
@@ -37,15 +39,15 @@
     },
     {
       "title": "Polimap, geo-analytics platform",
-      "subtitle": "Master's capstone, High Distinction",
+      "subtitle": "Master's capstone for a real client, High Distinction",
       "badge": "Under NDA",
       "badgeKind": "nda",
       "problem": "Decision-makers needed Australian electoral and census data as maps and charts they could interrogate, not as raw statistical releases.",
       "approach": "Reproducible ETL into PostgreSQL and PostGIS, a FastAPI backend, and a React and Leaflet front end serving maps, charts and tables.",
       "points": [
         "Relational schema design and download, clean, standardise, load pipelines producing join-ready tables",
-        "Data quality controls for uniqueness, referential integrity and coverage",
-        "Role-based access control, and stakeholder demos and handover documentation delivered under NDA"
+        "Data quality controls for uniqueness, referential integrity and geographic coverage, with zero critical defects in UAT",
+        "Runbooks that cut onboarding a new geography from days to hours, plus stakeholder demos and an NDA-compliant handover package"
       ],
       "stack": ["Python", "PostgreSQL", "PostGIS", "FastAPI", "React", "Leaflet"],
       "repo": null,
@@ -53,27 +55,5 @@
     }
   ],
 
-  "more": [
-    {
-      "title": "PowerCo churn baseline",
-      "subtitle": "BCG X simulation",
-      "outcome": "Compared XGBoost, random forest and logistic regression on a recall-first framing, tuned the threshold to about 0.97 recall, and documented the precision trade-off rather than burying it.",
-      "stack": ["Python", "scikit-learn", "XGBoost"],
-      "repo": "https://github.com/hemgandhi13/bcgx-powerco-churn-analysis"
-    },
-    {
-      "title": "Citi FP&A pack",
-      "subtitle": "Forage virtual experience",
-      "outcome": "Month-end variance packs in Excel and SQL with standardised price, mix and volume drivers, plus templated executive commentary so the analysis was repeatable.",
-      "stack": ["Excel/VBA", "SQL", "FP&A"],
-      "repo": "https://github.com/hemgandhi13/citi-fpa-virtual-internship"
-    },
-    {
-      "title": "ATS resume analyzer",
-      "subtitle": "Side project",
-      "outcome": "Streamlit app that parses PDF and DOCX resumes, extracts job-description keywords, and returns an explainable fit score with ranked evidence suggestions.",
-      "stack": ["Python", "NLP", "Streamlit", "sentence-transformers"],
-      "repo": "https://github.com/hemgandhi13/ats_resume_analyzer"
-    }
-  ]
+  "more": []
 }

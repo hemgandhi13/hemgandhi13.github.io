@@ -51,14 +51,19 @@ a:focus-visible, .btn:focus-visible, button:focus-visible {
   border-radius: 8px;
 }
 
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+/* Horizontal padding only. The shorthand `padding: 0 22px` also sets top and
+   bottom to 0, and because .wrap is a class it outranks the `section` and
+   `footer` element selectors below, so their vertical padding never applied. */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: 22px; padding-right: 22px; }
 
 /* ---------- Section rhythm ---------- */
 
-section { padding-top: 40px; padding-bottom: 40px; }
+/* Sections breathe on both sides of the divider, so the rule reads as a
+   separator rather than a line jammed under the previous block. */
+section { padding-top: 64px; padding-bottom: 64px; }
 section + section { border-top: 1px solid var(--border); }
 
-.section-head { margin-bottom: 22px; }
+.section-head { margin-bottom: 28px; }
 
 .section-head h2 {
   font-size: 13px;
@@ -432,7 +437,7 @@ footer {
   .hero .pitch { font-size: 16px; }
   .role-item { grid-template-columns: 1fr; gap: 6px; }
   .contact-card { padding: 22px 20px; }
-  section { padding-top: 32px; padding-bottom: 32px; }
+  section { padding-top: 44px; padding-bottom: 44px; }
 }
 
 @media print {
